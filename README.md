@@ -39,8 +39,8 @@ This will start all the required services:
 - PostgreSQL on port 5432
 - Redis on port 6379
 - RabbitMQ on port 5672 (management interface on port 15672)
-- Gateway Service on port 3000
-- Web App on port 3001
+- Gateway Service on port 3003
+- Web App on port 3000
 
 ## Development
 

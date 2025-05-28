@@ -12,6 +12,6 @@ COPY packages/gateway/src ./packages/gateway/src
 
 RUN npm run build -w @monorepo/gateway
 
-EXPOSE 3000
+EXPOSE 3003
 
 CMD ["npm", "run", "start", "-w", "@monorepo/gateway"] 

@@ -10,7 +10,9 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+      const endpoint = isLogin ?
+        'http://localhost:3003/auth/login' :
+        'http://localhost:3003/auth/register';
       const data = isLogin ? { email, password } : { email, password, name };
       const response = await axios.post(endpoint, data);
       localStorage.setItem('token', response.data.token);

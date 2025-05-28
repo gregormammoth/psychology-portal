@@ -15,7 +15,7 @@ export default async function handler(
   }
 
   try {
-    const response = await axios.get('http://localhost:3000/auth/profile', {
+    const response = await axios.get('http://localhost:3003/auth/profile', {
       headers: { Authorization: `Bearer ${token}` },
     });
     res.status(200).json(response.data);

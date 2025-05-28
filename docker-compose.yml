@@ -33,7 +33,7 @@ services:
       context: .
       dockerfile: packages/gateway/Dockerfile
     ports:
-      - "3000:3000"
+      - "3003:3003"
     depends_on:
       - auth-service
       - user-service
@@ -62,7 +62,7 @@ services:
       context: .
       dockerfile: packages/web-app/Dockerfile
     ports:
-      - "3001:3000"
+      - "3000:3000"
     depends_on:
       - gateway
 
