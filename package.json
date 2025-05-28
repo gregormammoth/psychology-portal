@@ -1,0 +1,29 @@
+{
+  "name": "redis-rabbit-jwt",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "lerna run dev --parallel",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "clean": "lerna clean"
+  },
+  "devDependencies": {
+    "lerna": "^8.2.2"
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregormammoth/redis-rabbit-jwt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregormammoth/redis-rabbit-jwt/issues"
+  },
+  "homepage": "https://github.com/gregormammoth/redis-rabbit-jwt#readme"
+}
