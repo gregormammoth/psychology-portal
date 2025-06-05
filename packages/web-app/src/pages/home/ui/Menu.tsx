@@ -1,19 +1,19 @@
 import { useState } from 'react';
 
-export default function Menu() {
+export const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
-      <nav className="bg-gradient-to-r from-primary-600 to-secondary-600 shadow-xl">
+      <nav className="bg-gradient-to-r from-primary-600 to-primary-800 shadow-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
             <div className="flex items-center">
               <h1 className="text-2xl font-bold text-white tracking-wide">Psychology Portal</h1>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Services</a>
               <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Home</a>
+              <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Services</a>
               <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Resources</a>
               <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">About</a>
               <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Contact</a>
@@ -34,16 +34,16 @@ export default function Menu() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-gradient-to-b from-indigo-600 to-purple-600 shadow-lg">
+        <div className="md:hidden bg-gradient-to-b from-primary-600 to-primary-800 shadow-lg">
           <div className="px-4 pt-4 pb-4 space-y-2">
-            <a href="#" className="block px-4 py-3 text-white hover:bg-indigo-500 rounded-lg transition duration-300 font-medium">Home</a>
-            <a href="#" className="block px-4 py-3 text-white hover:bg-indigo-500 rounded-lg transition duration-300 font-medium">Services</a>
-            <a href="#" className="block px-4 py-3 text-white hover:bg-indigo-500 rounded-lg transition duration-300 font-medium">Resources</a>
-            <a href="#" className="block px-4 py-3 text-white hover:bg-indigo-500 rounded-lg transition duration-300 font-medium">About</a>
-            <a href="#" className="block px-4 py-3 text-white hover:bg-indigo-500 rounded-lg transition duration-300 font-medium">Contact</a>
+            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">Home</a>
+            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">Services</a>
+            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">Resources</a>
+            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">About</a>
+            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">Contact</a>
           </div>
         </div>
       )}
     </>
-  )
-}
+  );
+}; 
