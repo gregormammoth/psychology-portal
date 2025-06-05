@@ -1,8 +1,16 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 
-export default function Home() {
+export default function Index() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/home');
+  }, [router]);
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
