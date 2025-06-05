@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import * as React from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -9,10 +9,10 @@ interface User {
 }
 
 export default function Dashboard() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = React.useState<User | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       router.push('/');

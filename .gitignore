@@ -1,1 +1,5 @@
+.DS_Store
 node_modules
+packages/web-app/node_modules
+packages/web-app/.next
+packages/web-app/public/images/banner.jpg
