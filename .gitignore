@@ -2,4 +2,4 @@
 node_modules
 packages/web-app/node_modules
 packages/web-app/.next
-packages/web-app/public/images/banner.jpg
+packages/web-app/public/images
