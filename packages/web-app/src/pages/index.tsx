@@ -21,7 +21,6 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Navigation Menu */}
       <nav className="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
@@ -49,7 +48,6 @@ export default function Index() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-gradient-to-b from-indigo-600 to-purple-600 shadow-lg">
           <div className="px-4 pt-4 pb-4 space-y-2">
@@ -62,7 +60,6 @@ export default function Index() {
         </div>
       )}
 
-      {/* Hero Banner */}
       <div className="relative bg-indigo-700">
         <div className="absolute inset-0">
           <img

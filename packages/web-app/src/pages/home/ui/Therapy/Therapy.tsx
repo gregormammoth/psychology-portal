@@ -1,6 +1,6 @@
 export default function Therapy() {
   return (
-    <div className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
           <div className="mb-12 lg:mb-0 transform hover:scale-105 transition-transform duration-300">
