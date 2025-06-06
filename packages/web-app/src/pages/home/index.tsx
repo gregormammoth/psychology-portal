@@ -16,7 +16,7 @@ export default function Home() {
       <Menu />
       <Banner />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="bg-primary-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <ProblemSolving />
         <Work />
         <Therapy />
