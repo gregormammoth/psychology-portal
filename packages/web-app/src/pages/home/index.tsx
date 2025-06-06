@@ -1,8 +1,10 @@
+import * as React from 'react';
 import Head from 'next/head';
 
-import { Banner, Footer, Menu, ProblemSolving, Slider, Therapy, Work } from './ui';
+import { Banner, Chat, Footer, Menu, ProblemSolving, Slider, Therapy, Work } from './ui';
 
 export default function Home() {
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Head>
@@ -21,6 +23,7 @@ export default function Home() {
         <Slider />
       </main>
       <Footer/>
+      <Chat />
     </div>
   );
-} 
+}
