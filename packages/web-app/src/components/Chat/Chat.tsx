@@ -28,6 +28,7 @@ export const Chat: React.FC = () => {
   const [username, setUsername] = useState('');
   const [isJoined, setIsJoined] = useState(false);
   const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export const Chat: React.FC = () => {
 
     socket.on('message:receive', (message: Message) => {
       setMessages(prev => [...prev, message]);
+      setIsLoading(false);
     });
 
     socket.on('user:joined', (user: User) => {
@@ -81,14 +83,17 @@ export const Chat: React.FC = () => {
   const handleJoin = (e: React.FormEvent) => {
     e.preventDefault();
     if (username.trim() && socket) {
+      setIsLoading(true);
       socket.emit('user:join', username);
       setIsJoined(true);
+      setIsLoading(false);
     }
   };
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (message.trim() && socket) {
+      setIsLoading(true);
       socket.emit('message:send', { text: message });
       setMessage('');
     }
@@ -118,9 +123,17 @@ export const Chat: React.FC = () => {
           />
           <button
             type="submit"
-            className="w-full mt-4 bg-primary-500 text-white py-3 rounded-md hover:bg-primary-600 transition duration-300"
+            disabled={isLoading}
+            className="w-full mt-4 bg-primary-500 text-white py-3 rounded-md hover:bg-primary-600 transition duration-300 relative"
           >
-            Join
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                Joining...
+              </div>
+            ) : (
+              'Join'
+            )}
           </button>
         </form>
       </div>
@@ -131,7 +144,6 @@ export const Chat: React.FC = () => {
     <div className="min-h-screen bg-primary-50 p-4">
       <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="grid grid-cols-4 h-[80vh]">
-          {/* Users List */}
           <div className="col-span-1 bg-primary-50 p-4 border-r border-primary-200">
             <h3 className="font-display text-lg font-semibold text-primary-700 mb-4">Online Users</h3>
             <div className="space-y-2">
@@ -144,9 +156,7 @@ export const Chat: React.FC = () => {
             </div>
           </div>
 
-          {/* Chat Area */}
           <div className="col-span-3 flex flex-col">
-            {/* Messages */}
             <div className="flex-1 p-4 overflow-y-auto">
               {messages.map(msg => (
                 <div
@@ -175,6 +185,11 @@ export const Chat: React.FC = () => {
                   {typingUsers.map(user => user.username).join(', ')} typing...
                 </div>
               )}
+              {isLoading && (
+                <div className="flex justify-center my-4">
+                  <div className="w-6 h-6 border-2 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 
@@ -188,12 +203,21 @@ export const Chat: React.FC = () => {
                   onKeyPress={handleTyping}
                   placeholder="Type a message..."
                   className="flex-1 p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  disabled={isLoading}
                 />
                 <button
                   type="submit"
-                  className="bg-primary-500 text-white px-6 py-3 rounded-md hover:bg-primary-600 transition duration-300"
+                  disabled={isLoading}
+                  className="bg-primary-500 text-white px-6 py-3 rounded-md hover:bg-primary-600 transition duration-300 relative"
                 >
-                  Send
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Sending...
+                    </div>
+                  ) : (
+                    'Send'
+                  )}
                 </button>
               </div>
             </form>
@@ -202,4 +226,4 @@ export const Chat: React.FC = () => {
       </div>
     </div>
   );
-}; 
+};

@@ -47,31 +47,32 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       username,
       timestamp: new Date().toISOString(),
     });
-    
-    client.emit('users:list', this.chatService.getAllUsers());
   }
 
   @SubscribeMessage('message:send')
-  handleMessage(client: Socket, message: { text: string; to?: string }) {
+  async handleMessage(client: Socket, message: { text: string }) {
     const username = this.chatService.getUser(client.id);
     if (!username) {
       return; // Skip message handling if user not found
     }
     
-    const messageData = this.chatService.createMessage(
+    // Create and send user message
+    const userMessage = this.chatService.createMessage(
       message.text,
       client.id,
       username,
     );
+    client.emit('message:receive', userMessage);
 
-    if (message.to) {
-      // Private message
-      client.to(message.to).emit('message:receive', messageData);
-      client.emit('message:receive', messageData);
-    } else {
-      // Broadcast message
-      this.server.emit('message:receive', messageData);
-    }
+    // Generate and send AI response
+    const aiResponse = await this.chatService.generateAIResponse(message.text);
+    const aiMessage = this.chatService.createMessage(
+      aiResponse,
+      'ai',
+      'AI Assistant',
+      true,
+    );
+    client.emit('message:receive', aiMessage);
   }
 
   @SubscribeMessage('user:typing')
@@ -83,4 +84,4 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       isTyping,
     });
   }
-} 
+}
