@@ -65,7 +65,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     client.emit('message:receive', userMessage);
 
     // Generate and send AI response
-    const aiResponse = await this.chatService.generateAIResponse(message.text);
+    const aiResponse = await this.chatService.generateAIResponse(message.text, client.id);
     const aiMessage = this.chatService.createMessage(
       aiResponse,
       'ai',

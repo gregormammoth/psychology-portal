@@ -173,10 +173,20 @@ export const Chat: React.FC = () => {
                     }`}
                   >
                     <div className="font-medium">{msg.fromUsername}</div>
-                    <div>{msg.text}</div>
+                    <div className="whitespace-pre-wrap">{msg.text}</div>
                     <div className="text-xs opacity-75">
                       {new Date(msg.timestamp).toLocaleTimeString()}
                     </div>
+                    {msg.from === 'ai' && (
+                      <div className="mt-2">
+                        <a 
+                          href="/contacts" 
+                          className="text-primary-600 hover:text-primary-700 underline"
+                        >
+                          Book a consultation
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -193,17 +203,16 @@ export const Chat: React.FC = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Message Input */}
             <form onSubmit={handleSendMessage} className="p-4 border-t border-primary-200">
               <div className="flex space-x-4">
-                <input
-                  type="text"
+                <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyPress={handleTyping}
                   placeholder="Type a message..."
-                  className="flex-1 p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="flex-1 p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
                   disabled={isLoading}
+                  rows={3}
                 />
                 <button
                   type="submit"

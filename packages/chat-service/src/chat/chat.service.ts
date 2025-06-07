@@ -22,25 +22,26 @@ export interface Message {
 export class ChatService {
   private activeUsers: Map<string, string> = new Map();
   private chatModel: ChatGroq;
+  private messageHistory: Map<string, Message[]> = new Map();
 
   constructor() {
     this.chatModel = new ChatGroq({
       apiKey: process.env.GROQ_API_KEY,
       model: 'meta-llama/llama-4-scout-17b-16e-instruct',
-      // temperature=1,
-      // max_completion_tokens=870,
-      // top_p=1,
-      // stream=True,
-      // stop=None,
+      temperature: 0.7,
+      maxTokens: 150,
+      topP: 0.9,
     });
   }
 
   addUser(userId: string, username: string): void {
     this.activeUsers.set(userId, username);
+    this.messageHistory.set(userId, []);
   }
 
   removeUser(userId: string): void {
     this.activeUsers.delete(userId);
+    this.messageHistory.delete(userId);
   }
 
   getUser(userId: string): string | undefined {
@@ -52,7 +53,7 @@ export class ChatService {
   }
 
   createMessage(text: string, from: string, fromUsername: string, isAI: boolean = false): Message {
-    return {
+    const message = {
       id: Date.now().toString(),
       text,
       from,
@@ -60,25 +61,50 @@ export class ChatService {
       timestamp: new Date().toISOString(),
       isAI,
     };
+
+    // Store message in history if it's from a user
+    if (!isAI && from !== 'ai') {
+      const userHistory = this.messageHistory.get(from) || [];
+      this.messageHistory.set(from, [...userHistory, message]);
+    }
+
+    return message;
   }
 
-  async generateAIResponse(userMessage: string): Promise<string> {
+  async generateAIResponse(userMessage: string, userId: string): Promise<string> {
+    const username = this.getUser(userId) || 'there';
+    const userHistory = this.messageHistory.get(userId) || [];
+    
     try {
-      const response = await this.chatModel.invoke([
+      const systemPrompt = `You are a helpful AI assistant on psychology portal. 
+        Give brief, supportive responses (max 100 words) to mental health questions.
+        Provide support and guidance on psychology related questions. 
+        Advice on how to deal with mental health issues. 
+        When appropriate, suggest booking a consultation through our contacts page for personalized professional help. 
+        Always address the user by their name (${username}) in your responses.
+        Consider the context of previous messages when providing responses.`;
+
+      const messages = [
         {
           role: 'system',
-          content: 'You are a helpful AI assistant on psychology portal. Provide support and guidance on psychology related questions. Advice on how to deal with mental health issues. Give advice to book a personal consultation with a psychologist.',
+          content: systemPrompt,
         },
+        // Include last 5 messages for context
+        ...userHistory.slice(-5).map(msg => ({
+          role: msg.isAI ? 'assistant' : 'user',
+          content: msg.text,
+        })),
         {
           role: 'user',
           content: userMessage,
         },
-      ]);
+      ];
 
+      const response = await this.chatModel.invoke(messages);
       return response.content.toString();
     } catch (error) {
       console.error('Error generating AI response:', error);
-      return 'I apologize, but I encountered an error while processing your request. Please try again.';
+      return `I apologize ${username}, but I encountered an error while processing your request. Please try again.`;
     }
   }
-} 
+}

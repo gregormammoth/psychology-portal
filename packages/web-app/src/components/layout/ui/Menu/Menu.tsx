@@ -5,7 +5,7 @@ export default function Menu() {
 
   const menuItems = [
     { href: '/', label: 'Home' },
-    { href: '/chat', label: 'Chat' },
+    { href: '/chat', label: 'Psy AI' },
     { href: '/articles', label: 'Articles' },
     { href: '/contacts', label: 'Contact' },
   ];
