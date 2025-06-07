@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useTranslation } from 'next-i18next';
 import { io, Socket } from 'socket.io-client';
 
 interface Message {
@@ -21,6 +22,7 @@ interface TypingUser {
 }
 
 export const Chat: React.FC = () => {
+  const { t } = useTranslation('common');
   const [socket, setSocket] = useState<Socket | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -112,12 +114,12 @@ export const Chat: React.FC = () => {
     return (
       <div className="min-h-screen bg-primary-50 flex items-start justify-center">
         <form onSubmit={handleJoin} className="bg-white p-8 rounded-lg shadow-lg w-96">
-          <h2 className="text-2xl font-display font-bold text-primary-700 mb-6">Join Chat</h2>
+          <h2 className="text-2xl font-display font-bold text-primary-700 mb-6">{t('chat.join')}</h2>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter your username"
+            placeholder={t('chat.enterUsername')}
             className="w-full p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
             required
           />
@@ -129,10 +131,10 @@ export const Chat: React.FC = () => {
             {isLoading ? (
               <div className="flex items-center justify-center">
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                Joining...
+                {t('chat.joining')}
               </div>
             ) : (
-              'Join'
+              t('chat.join')
             )}
           </button>
         </form>
@@ -145,7 +147,7 @@ export const Chat: React.FC = () => {
       <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="grid grid-cols-4 h-[80vh]">
           <div className="col-span-1 bg-primary-50 p-4 border-r border-primary-200">
-            <h3 className="font-display text-lg font-semibold text-primary-700 mb-4">Online Users</h3>
+            <h3 className="font-display text-lg font-semibold text-primary-700 mb-4">{t('chat.onlineUsers')}</h3>
             <div className="space-y-2">
               {users.map(user => (
                 <div key={user.userId} className="flex items-center space-x-2">
@@ -183,7 +185,7 @@ export const Chat: React.FC = () => {
                           href="/contacts" 
                           className="text-primary-600 hover:text-primary-700 underline"
                         >
-                          Book a consultation
+                          {t('chat.bookConsultation')}
                         </a>
                       </div>
                     )}
@@ -192,7 +194,7 @@ export const Chat: React.FC = () => {
               ))}
               {typingUsers.length > 0 && (
                 <div className="text-sm text-primary-500 italic">
-                  {typingUsers.map(user => user.username).join(', ')} typing...
+                  {typingUsers.map(user => user.username).join(', ')} {t('chat.typing')}
                 </div>
               )}
               {isLoading && (
@@ -209,7 +211,7 @@ export const Chat: React.FC = () => {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyPress={handleTyping}
-                  placeholder="Type a message..."
+                  placeholder={t('chat.typeMessage')}
                   className="flex-1 p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
                   disabled={isLoading}
                   rows={3}
@@ -222,10 +224,10 @@ export const Chat: React.FC = () => {
                   {isLoading ? (
                     <div className="flex items-center">
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                      Sending...
+                      {t('chat.sending')}
                     </div>
                   ) : (
-                    'Send'
+                    t('chat.send')
                   )}
                 </button>
               </div>

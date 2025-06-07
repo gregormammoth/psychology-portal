@@ -1,10 +1,24 @@
 {
   "menu": {
+    "portalName": "Psychology Portal",
     "home": "Home",
-    "chat": "Chat",
-    "contacts": "Contacts",
+    "psyAI": "AI Assistant",
+    "articles": "Articles",
+    "contact": "Contact",
     "login": "Login",
     "register": "Register"
+  },
+  "chat": {
+    "description": "Real-time chat with AI Assistant for psychological support",
+    "join": "Join Chat",
+    "enterUsername": "Enter your username",
+    "joining": "Joining...",
+    "onlineUsers": "Online Users",
+    "bookConsultation": "Book a consultation",
+    "typing": "typing...",
+    "typeMessage": "Type a message...",
+    "sending": "Sending...",
+    "send": "Send"
   },
   "footer": {
     "about": {

@@ -1,25 +1,22 @@
 import * as React from 'react';
-import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 
-import { Banner, /*Chat, Footer, Menu,*/ ProblemSolving, Slider, Therapy, Work } from './ui';
+import { Banner, ProblemSolving, Slider, Therapy, Work } from './ui';
 import { Layout } from '../layout/Layout';
 
 export default function Home() {
+  const { t } = useTranslation('common');
 
   return (
     <Layout
-      title="Psychology Portal"
+      title={t('menu.portalName')}
       description="Professional psychology services and resources"
     >
       <Banner />
-
-        <ProblemSolving />
-        <Work />
-        <Therapy />
-        <Slider />
-      {/* <Footer /> */}
-      {/* <Chat /> */}
-      {/* </div> */}
+      <ProblemSolving />
+      <Work />
+      <Therapy />
+      <Slider />
     </Layout>
   );
 }
