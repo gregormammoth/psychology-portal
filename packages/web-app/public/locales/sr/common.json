@@ -1,0 +1,83 @@
+{
+  "menu": {
+    "home": "Почетна",
+    "chat": "Ћаскање",
+    "contacts": "Контакти",
+    "login": "Пријава",
+    "register": "Регистрација"
+  },
+  "footer": {
+    "about": {
+      "title": "О нама",
+      "description": "Пружамо професионалну психолошку подршку и вођство да вам помогнемо да се носите са животним изазовима."
+    },
+    "quickLinks": {
+      "title": "Брзе везе"
+    },
+    "contact": {
+      "title": "Контакт",
+      "address": "Психолошка улица 123, Стан 456, Град, Држава 12345",
+      "email": "contact@psychologyportal.com",
+      "phone": "+1 (555) 123-4567",
+      "workingHours": "Понедељак - Петак, 9:00 - 18:00"
+    },
+    "copyright": "© {{year}} Psychology Portal. Сва права задржана."
+  },
+  "contacts": {
+    "title": "Закажите консултацију",
+    "subtitle": "Закажите сесију са нашим искусним психолозима",
+    "form": {
+      "name": {
+        "label": "Пуно име",
+        "placeholder": "Петар Петровић"
+      },
+      "email": {
+        "label": "Имејл",
+        "placeholder": "petar@example.com"
+      },
+      "phone": {
+        "label": "Број телефона",
+        "placeholder": "+381 60 000-0000"
+      },
+      "consultationType": {
+        "label": "Тип консултације",
+        "options": {
+          "individual": "Индивидуална консултација",
+          "couple": "Парска терапија",
+          "family": "Породична терапија",
+          "group": "Групна терапија"
+        }
+      },
+      "preferredDate": {
+        "label": "Жељени датум"
+      },
+      "preferredTime": {
+        "label": "Жељено време"
+      },
+      "message": {
+        "label": "Додатне информације",
+        "placeholder": "Молимо вас да наведете све додатне информације које би могле бити корисне за вашу консултацију..."
+      },
+      "submit": "Закажите консултацију"
+    },
+    "contactInfo": {
+      "title": "Контакт информације",
+      "address": {
+        "label": "Адреса",
+        "value": "Психолошка улица 123, Стан 456, Град, Држава 12345"
+      },
+      "phone": {
+        "label": "Телефон",
+        "value": "+1 (555) 123-4567"
+      },
+      "email": {
+        "label": "Имејл",
+        "value": "contact@psychologyportal.com"
+      },
+      "workingHours": {
+        "label": "Радно време",
+        "value": "Понедељак - Петак, 9:00 - 18:00"
+      }
+    }
+  }
+} 

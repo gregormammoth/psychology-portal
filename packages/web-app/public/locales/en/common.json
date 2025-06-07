@@ -1,0 +1,83 @@
+{
+  "menu": {
+    "home": "Home",
+    "chat": "Chat",
+    "contacts": "Contacts",
+    "login": "Login",
+    "register": "Register"
+  },
+  "footer": {
+    "about": {
+      "title": "About Us",
+      "description": "Providing professional psychological support and guidance to help you navigate life's challenges."
+    },
+    "quickLinks": {
+      "title": "Quick Links"
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "123 Psychology Street, Suite 456, City, State 12345",
+      "email": "contact@psychologyportal.com",
+      "phone": "+1 (555) 123-4567",
+      "workingHours": "Monday - Friday, 9:00 AM - 6:00 PM"
+    },
+    "copyright": "© {{year}} Psychology Portal. All rights reserved."
+  },
+  "contacts": {
+    "title": "Book a Consultation",
+    "subtitle": "Schedule a session with our experienced psychologists",
+    "form": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "john@example.com"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "+1 (555) 000-0000"
+      },
+      "consultationType": {
+        "label": "Consultation Type",
+        "options": {
+          "individual": "Individual Consultation",
+          "couple": "Couple Therapy",
+          "family": "Family Therapy",
+          "group": "Group Therapy"
+        }
+      },
+      "preferredDate": {
+        "label": "Preferred Date"
+      },
+      "preferredTime": {
+        "label": "Preferred Time"
+      },
+      "message": {
+        "label": "Additional Information",
+        "placeholder": "Please provide any additional information that might be helpful for your consultation..."
+      },
+      "submit": "Book Consultation"
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "address": {
+        "label": "Address",
+        "value": "123 Psychology Street, Suite 456, City, State 12345"
+      },
+      "phone": {
+        "label": "Phone",
+        "value": "+1 (555) 123-4567"
+      },
+      "email": {
+        "label": "Email",
+        "value": "contact@psychologyportal.com"
+      },
+      "workingHours": {
+        "label": "Working Hours",
+        "value": "Monday - Friday, 9:00 AM - 6:00 PM"
+      }
+    }
+  }
+} 

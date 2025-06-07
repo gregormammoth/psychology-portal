@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Textarea } from '../../components/ui/Textarea';
@@ -15,18 +17,16 @@ interface BookingFormData {
   message: string;
 }
 
-const consultationTypes = [
-  { value: 'individual', label: 'Individual Consultation' },
-  { value: 'couple', label: 'Couple Therapy' },
-  { value: 'family', label: 'Family Therapy' },
-  { value: 'group', label: 'Group Therapy' },
-];
-
-const timeSlots = [
-  '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'
-].map(time => ({ value: time, label: time }));
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default function ContactsPage() {
+  const { t } = useTranslation('common');
   const [formData, setFormData] = useState<BookingFormData>({
     name: '',
     email: '',
@@ -36,6 +36,17 @@ export default function ContactsPage() {
     consultationType: '',
     message: '',
   });
+
+  const consultationTypes = [
+    { value: 'individual', label: t('contacts.form.consultationType.options.individual') },
+    { value: 'couple', label: t('contacts.form.consultationType.options.couple') },
+    { value: 'family', label: t('contacts.form.consultationType.options.family') },
+    { value: 'group', label: t('contacts.form.consultationType.options.group') },
+  ];
+
+  const timeSlots = [
+    '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'
+  ].map(time => ({ value: time, label: time }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,15 +61,17 @@ export default function ContactsPage() {
 
   return (
     <Layout
-      title="Contact Us - Psychology Portal"
-      description="Book a consultation with our psychologists"
+      title={t('contacts.title')}
+      description={t('contacts.subtitle')}
     >
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-primary-600 mb-4">Book a Consultation</h1>
+            <h1 className="text-4xl font-bold text-primary-600 mb-4">
+              {t('contacts.title')}
+            </h1>
             <p className="text-lg text-primary-500">
-              Schedule a session with our experienced psychologists
+              {t('contacts.subtitle')}
             </p>
           </div>
           
@@ -67,7 +80,7 @@ export default function ContactsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-primary-700 mb-2">
-                    Full Name
+                    {t('contacts.form.name.label')}
                   </label>
                   <Input
                     id="name"
@@ -76,14 +89,14 @@ export default function ContactsPage() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="John Doe"
+                    placeholder={t('contacts.form.name.placeholder')}
                     className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-2">
-                    Email
+                    {t('contacts.form.email.label')}
                   </label>
                   <Input
                     id="email"
@@ -92,14 +105,14 @@ export default function ContactsPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="john@example.com"
+                    placeholder={t('contacts.form.email.placeholder')}
                     className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-primary-700 mb-2">
-                    Phone Number
+                    {t('contacts.form.phone.label')}
                   </label>
                   <Input
                     id="phone"
@@ -108,14 +121,14 @@ export default function ContactsPage() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+1 (555) 000-0000"
+                    placeholder={t('contacts.form.phone.placeholder')}
                     className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="consultationType" className="block text-sm font-medium text-primary-700 mb-2">
-                    Consultation Type
+                    {t('contacts.form.consultationType.label')}
                   </label>
                   <Select
                     id="consultationType"
@@ -130,7 +143,7 @@ export default function ContactsPage() {
 
                 <div>
                   <label htmlFor="preferredDate" className="block text-sm font-medium text-primary-700 mb-2">
-                    Preferred Date
+                    {t('contacts.form.preferredDate.label')}
                   </label>
                   <Input
                     id="preferredDate"
@@ -146,7 +159,7 @@ export default function ContactsPage() {
 
                 <div>
                   <label htmlFor="preferredTime" className="block text-sm font-medium text-primary-700 mb-2">
-                    Preferred Time
+                    {t('contacts.form.preferredTime.label')}
                   </label>
                   <Select
                     id="preferredTime"
@@ -162,14 +175,14 @@ export default function ContactsPage() {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-primary-700 mb-2">
-                  Additional Information
+                  {t('contacts.form.message.label')}
                 </label>
                 <Textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Please provide any additional information that might be helpful for your consultation..."
+                  placeholder={t('contacts.form.message.placeholder')}
                   rows={4}
                   className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
                 />
@@ -177,38 +190,50 @@ export default function ContactsPage() {
 
               <div className="flex justify-end">
                 <Button type="submit" variant="primary" size="lg" className="bg-primary-600 hover:bg-primary-700">
-                  Book Consultation
+                  {t('contacts.form.submit')}
                 </Button>
               </div>
             </form>
           </div>
 
           <div className="mt-16 bg-white rounded-xl shadow-lg p-8 border border-primary-100">
-            <h2 className="text-2xl font-semibold text-primary-600 mb-6">Contact Information</h2>
+            <h2 className="text-2xl font-semibold text-primary-600 mb-6">
+              {t('contacts.contactInfo.title')}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium text-primary-500">Address</h3>
+                  <h3 className="text-sm font-medium text-primary-500">
+                    {t('contacts.contactInfo.address.label')}
+                  </h3>
                   <p className="mt-1 text-base text-primary-700">
-                    123 Psychology Street, Suite 456<br />
-                    City, State 12345
+                    {t('contacts.contactInfo.address.value')}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-primary-500">Phone</h3>
-                  <p className="mt-1 text-base text-primary-700">+1 (555) 123-4567</p>
+                  <h3 className="text-sm font-medium text-primary-500">
+                    {t('contacts.contactInfo.phone.label')}
+                  </h3>
+                  <p className="mt-1 text-base text-primary-700">
+                    {t('contacts.contactInfo.phone.value')}
+                  </p>
                 </div>
               </div>
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium text-primary-500">Email</h3>
-                  <p className="mt-1 text-base text-primary-700">contact@psychologyportal.com</p>
+                  <h3 className="text-sm font-medium text-primary-500">
+                    {t('contacts.contactInfo.email.label')}
+                  </h3>
+                  <p className="mt-1 text-base text-primary-700">
+                    {t('contacts.contactInfo.email.value')}
+                  </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-primary-500">Working Hours</h3>
+                  <h3 className="text-sm font-medium text-primary-500">
+                    {t('contacts.contactInfo.workingHours.label')}
+                  </h3>
                   <p className="mt-1 text-base text-primary-700">
-                    Monday - Friday<br />
-                    9:00 AM - 6:00 PM
+                    {t('contacts.contactInfo.workingHours.value')}
                   </p>
                 </div>
               </div>

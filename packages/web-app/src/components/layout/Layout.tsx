@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-
-import { Chat ,Footer, Menu } from './ui';
+import { useTranslation } from 'next-i18next';
+import { Chat, Footer, Menu } from './ui';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,6 +14,7 @@ export const Layout: React.FC<LayoutProps> = ({
   title = 'Psychology Portal',
   description = 'Your trusted platform for psychological support and guidance',
 }) => {
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-gray-50">
