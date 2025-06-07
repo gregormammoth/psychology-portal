@@ -1,7 +1,14 @@
 import { useState } from 'react';
 
-export default function Menu () {
+export default function Menu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuItems = [
+    { href: '/', label: 'Home' },
+    { href: '/chat', label: 'Chat' },
+    { href: '/articles', label: 'Articles' },
+    { href: '/contacts', label: 'Contact' },
+  ];
 
   return (
     <>
@@ -12,11 +19,15 @@ export default function Menu () {
               <h1 className="text-2xl font-bold text-white tracking-wide">Psychology Portal</h1>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Home</a>
-              <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Services</a>
-              <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Resources</a>
-              <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">About</a>
-              <a href="#" className="text-white hover:text-primary-200 transition duration-300 font-medium">Contact</a>
+              {menuItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-white hover:text-primary-200 transition duration-300 font-medium"
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
             <div className="md:hidden flex items-center">
               <button
@@ -35,14 +46,18 @@ export default function Menu () {
       {isMenuOpen && (
         <div className="md:hidden bg-gradient-to-b from-primary-600 to-primary-800 shadow-lg">
           <div className="px-4 pt-4 pb-4 space-y-2">
-            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">Home</a>
-            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">Services</a>
-            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">Resources</a>
-            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">About</a>
-            <a href="#" className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium">Contact</a>
+            {menuItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
       )}
     </>
   );
-}; 
+}

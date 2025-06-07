@@ -1,16 +1,15 @@
-import Head from 'next/head';
 import { Chat } from '../../components/Chat/Chat';
+import { Layout } from '../../components/layout/Layout';
 
 export default function ChatPage() {
   return (
-    <div>
-      <Head>
-        <title>Chat - Psychology Portal</title>
-        <meta name="description" content="Real-time chat for Psychology Portal" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Chat />
-    </div>
+    <Layout
+      title="Chat - Psychology Portal"
+      description="Real-time chat for Psychology Portal"
+    >
+      <div className="container mx-auto px-4 py-8">
+        <Chat />
+      </div>
+    </Layout>
   );
 } 

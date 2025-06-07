@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import axios from 'axios';
 import Head from 'next/head';
 
 export default function Index() {
