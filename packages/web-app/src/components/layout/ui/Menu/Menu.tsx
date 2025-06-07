@@ -16,7 +16,7 @@ export default function Menu() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-white tracking-wide">Psychology Portal</h1>
+              <a href="/" className="text-2xl font-bold text-white tracking-wide hover:text-primary-200 transition duration-300">Psychology Portal</a>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               {menuItems.map((item) => (

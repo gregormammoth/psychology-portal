@@ -110,7 +110,7 @@ export const Chat: React.FC = () => {
 
   if (!isJoined) {
     return (
-      <div className="min-h-screen bg-primary-50 flex items-center justify-center">
+      <div className="min-h-screen bg-primary-50 flex items-start justify-center">
         <form onSubmit={handleJoin} className="bg-white p-8 rounded-lg shadow-lg w-96">
           <h2 className="text-2xl font-display font-bold text-primary-700 mb-6">Join Chat</h2>
           <input

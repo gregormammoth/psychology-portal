@@ -19,7 +19,7 @@ export default function Banner() {
           </p>
           <div className="mt-10 space-y-4 animate-fade-in-delay">
             <a
-              href="#"
+              href="/contacts"
               className="inline-block bg-white py-3 px-8 border border-transparent rounded-md text-base font-medium text-primary-600 hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
             >
               Book a Consultation
