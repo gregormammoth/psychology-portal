@@ -1,33 +1,55 @@
 import React from 'react';
+import { TextField, TextFieldProps } from '@mui/material';
 import { twMerge } from 'tailwind-merge';
 
-interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+import theme from '../../theme';
+
+interface TextareaProps extends Omit<TextFieldProps, 'error'> {
   error?: string;
 }
 
 export const Textarea: React.FC<TextareaProps> = ({
   className,
   error,
+  color = 'primary',
   ...props
 }) => {
   return (
-    <div className="relative">
-      <textarea
-        className={twMerge(
-          'block w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 text-gray-900 shadow-sm transition-all duration-200',
-          'placeholder:text-gray-400',
-          'focus:border-primary-500 focus:ring-2 focus:ring-primary-200 focus:outline-none',
-          'hover:border-gray-300',
-          error && 'border-red-300 focus:border-red-500 focus:ring-red-200',
-          'disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed',
-          'resize-none',
-          className
-        )}
-        {...props}
-      />
-      {error && (
-        <p className="mt-2 text-sm text-red-600">{error}</p>
-      )}
-    </div>
+    <TextField
+      variant="outlined"
+      fullWidth
+      multiline
+      minRows={3}
+      error={!!error}
+      helperText={error}
+      color="primary"
+      className={twMerge('', className)}
+      InputProps={{
+        ...props.InputProps,
+      }}
+      sx={{
+        '& .MuiOutlinedInput-root': {
+          '&.Mui-focused fieldset': {
+            borderColor: theme.palette.primary.main,
+            borderWidth: '2px',
+          },
+          '&:hover fieldset': {
+            borderColor: theme.palette.primary.dark,
+          },
+          '& fieldset': {
+            borderColor: theme.palette.grey[300],
+            transition: 'border-color 0.3s',
+          },
+        },
+        '& .MuiFormLabel-root.Mui-focused': {
+          color: theme.palette.primary.main,
+        },
+        '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+          borderColor: theme.palette.primary.main,
+        },
+        ...props.sx
+      }}
+      {...props}
+    />
   );
 }; 

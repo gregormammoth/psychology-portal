@@ -3,104 +3,64 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      50: '#f7faf0',
-      100: '#eff5e1',
-      200: '#dfebc3',
-      300: '#cfe1a5',
-      400: '#bfd787',
-      500: '#afcd69', // Main pastel green-yellow
-      600: '#8ca454',
-      700: '#697b3f',
-      800: '#46522a',
-      900: '#232915',
-      main: '#afcd69', // Using 500 as main
-      light: '#dfebc3', // Using 200 as light
-      dark: '#697b3f', // Using 700 as dark
-      contrastText: '#232915', // Using 900 for contrast
+      main: '#afcd69', // Tailwind primary-500
+      light: '#dfebc3', // Tailwind primary-200
+      dark: '#697b3f', // Tailwind primary-700
+      contrastText: '#232915', // Tailwind primary-900
     },
     secondary: {
-      50: '#faf7f0',
-      100: '#f5efe1',
-      200: '#ebdfc3',
-      300: '#e1cfa5',
-      400: '#d7bf87',
-      500: '#cdaf69', // Pastel yellow
-      600: '#a48c54',
-      700: '#7b693f',
-      800: '#52462a',
-      900: '#292315',
-      main: '#cdaf69', // Using 500 as main
-      light: '#ebdfc3', // Using 200 as light
-      dark: '#7b693f', // Using 700 as dark
-      contrastText: '#292315', // Using 900 for contrast
+      main: '#6b7280', // Tailwind gray-500
+      light: '#9ca3af', // Tailwind gray-400
+      dark: '#4b5563', // Tailwind gray-600
+      contrastText: '#ffffff',
     },
     background: {
-      default: '#f7faf0', // Using primary-50
+      default: '#ffffff',
       paper: '#ffffff',
     },
     text: {
-      primary: '#232915', // Using primary-900
-      secondary: '#46522a', // Using primary-800
+      primary: '#232915', // Tailwind primary-900
+      secondary: '#4b5563', // Tailwind gray-600
     },
   },
   typography: {
-    fontFamily: [
-      'Inter',
-      'system-ui',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'Segoe UI',
-      'Roboto',
-      'Helvetica Neue',
-      'Arial',
-      'sans-serif',
-    ].join(','),
+    fontFamily: '"Inter", "Helvetica", "Arial", sans-serif',
     h1: {
-      fontFamily: 'Montserrat, sans-serif',
       fontWeight: 700,
     },
     h2: {
-      fontFamily: 'Montserrat, sans-serif',
       fontWeight: 700,
     },
     h3: {
-      fontFamily: 'Montserrat, sans-serif',
-      fontWeight: 600,
+      fontWeight: 700,
     },
     h4: {
-      fontFamily: 'Montserrat, sans-serif',
       fontWeight: 600,
     },
     h5: {
-      fontFamily: 'Montserrat, sans-serif',
       fontWeight: 600,
     },
     h6: {
-      fontFamily: 'Montserrat, sans-serif',
       fontWeight: 600,
     },
+  },
+  shape: {
+    borderRadius: 8,
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: 'none',
-          borderRadius: '0.5rem',
           fontWeight: 500,
+          borderRadius: 8,
+          padding: '8px 16px',
         },
         contained: {
           boxShadow: 'none',
           '&:hover': {
-            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
           },
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: '1rem',
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         },
       },
     },
@@ -108,15 +68,100 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-root': {
-            borderRadius: '0.5rem',
+            '& fieldset': {
+              borderColor: 'primary.main',
+            },
+            '&:hover fieldset': {
+              borderColor: 'primary.dark',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'primary.main',
+            },
           },
+          '& .MuiInputLabel-root': {
+            color: 'text.secondary',
+            '&.Mui-focused': {
+              color: 'primary.main',
+            },
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& fieldset': {
+            borderColor: 'primary.main',
+          },
+          '&:hover fieldset': {
+            borderColor: 'primary.dark',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: 'primary.main',
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: 'text.secondary',
+          '&.Mui-focused': {
+            color: 'primary.main',
+          },
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'primary.main',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'primary.dark',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'primary.main',
+          },
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'primary.main',
+            },
+            '&:hover fieldset': {
+              borderColor: 'primary.dark',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'primary.main',
+            },
+          },
+          '& .MuiInputLabel-root': {
+            color: 'text.secondary',
+            '&.Mui-focused': {
+              color: 'primary.main',
+            },
+          },
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+          boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.05)',
         },
       },
     },
     MuiChip: {
       styleOverrides: {
         root: {
-          borderRadius: '0.5rem',
+          borderRadius: 6,
         },
       },
     },

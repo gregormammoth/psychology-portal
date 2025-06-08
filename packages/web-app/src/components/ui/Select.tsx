@@ -1,12 +1,15 @@
 import React from 'react';
+import { Select as MuiSelect, MenuItem, FormControl, FormHelperText, SelectProps as MuiSelectProps } from '@mui/material';
 import { twMerge } from 'tailwind-merge';
+
+import theme from '../../theme';
 
 interface Option {
   value: string;
   label: string;
 }
 
-interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'options'> {
+interface SelectProps extends Omit<MuiSelectProps, 'error'> {
   options: Option[];
   error?: string;
 }
@@ -15,37 +18,44 @@ export const Select: React.FC<SelectProps> = ({
   className,
   options,
   error,
+  color = 'primary',
   ...props
 }) => {
   return (
-    <div className="relative">
-      <select
-        className={twMerge(
-          'block w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 text-gray-900 shadow-sm transition-all duration-200',
-          'appearance-none',
-          'focus:border-primary-500 focus:ring-2 focus:ring-primary-200 focus:outline-none',
-          'hover:border-gray-300',
-          error && 'border-red-300 focus:border-red-500 focus:ring-red-200',
-          'disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed',
-          className
-        )}
+    <FormControl fullWidth error={!!error}>
+      <MuiSelect
+        variant="outlined"
+        displayEmpty
+        color="primary"
+        className={twMerge('', className)}
+        sx={{
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.palette.grey[300],
+            transition: 'border-color 0.3s',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.palette.primary.dark,
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.palette.primary.main,
+            borderWidth: '2px',
+          },
+          ...props.sx
+        }}
         {...props}
       >
-        <option value="" className="text-gray-400">Select an option</option>
+        <MenuItem value="" disabled>
+          <em>Select an option</em>
+        </MenuItem>
         {options.map((option) => (
-          <option key={option.value} value={option.value} className="text-gray-900">
+          <MenuItem key={option.value} value={option.value}>
             {option.label}
-          </option>
+          </MenuItem>
         ))}
-      </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
+      </MuiSelect>
       {error && (
-        <p className="mt-2 text-sm text-red-600">{error}</p>
+        <FormHelperText>{error}</FormHelperText>
       )}
-    </div>
+    </FormControl>
   );
 }; 
