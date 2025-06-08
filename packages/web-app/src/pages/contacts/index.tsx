@@ -55,7 +55,13 @@ const ContactsPage = () => {
       // Send the consultation request to the psy-service via gateway
       await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/psy/consultations`,
-        data,
+        {
+          ...data,
+          price: Number(data.price),
+          duration: Number(data.duration),
+          psychologistId: '1',
+          status: 'available',
+        },
       );
       // await axios.post(
       //   `${process.env.NEXT_PUBLIC_API_URL}/psy/consultations`,

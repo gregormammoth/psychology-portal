@@ -18,6 +18,9 @@ export class Consultation extends Document {
   @Prop({ required: true, min: 15, max: 180 })
   duration: number;
 
+  @Prop({ required: true, enum: ['online', 'offline'] })
+  type: 'online' | 'offline';
+
   @Prop({ type: [String], required: true })
   timeSlots: string[];
 

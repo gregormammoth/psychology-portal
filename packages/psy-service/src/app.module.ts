@@ -12,7 +12,7 @@ import { ArticlesModule } from './modules/articles/articles.module';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: 'mongodb://admin:admin123@mongodb:27017/psy_db?authSource=admin', //configService.get<string>('MONGODB_URI'),
+        uri: configService.get<string>('MONGODB_URI', 'mongodb://admin:admin123@localhost:27017/psy_db?authSource=admin'),
       }),
       inject: [ConfigService],
     }),
