@@ -34,20 +34,37 @@ services:
       dockerfile: packages/gateway/Dockerfile
     ports:
       - "3003:3003"
+    environment:
+      - NODE_ENV=development
+      - AUTH_SERVICE_HOST=auth-service
+      - AUTH_SERVICE_PORT=3001
+      - PSY_SERVICE_HOST=psy-service
+      - PSY_SERVICE_PORT=3004
     depends_on:
       - auth-service
       - user-service
       - redis
       - rabbitmq
+    volumes:
+      - ./packages/gateway:/app/packages/gateway
+      - /app/node_modules
 
   auth-service:
     build:
-      context: .
-      dockerfile: packages/auth-service/Dockerfile
+      context: ./packages/auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/auth_db
+      - JWT_SECRET=your-secret-key
+      - JWT_EXPIRATION=1h
     depends_on:
-      - redis
-      - rabbitmq
       - postgres
+    volumes:
+      - ./packages/auth-service:/app
+      - /app/node_modules
 
   user-service:
     build:
@@ -59,13 +76,47 @@ services:
 
   web-app:
     build:
-      context: .
-      dockerfile: packages/web-app/Dockerfile
+      context: ./packages/web-app
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:3003
+    volumes:
+      - ./packages/web-app:/app
+      - /app/node_modules
     depends_on:
-      - gateway
+      - auth-service
+
+  mongodb:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+    volumes:
+      - mongodb_data:/data/db
+
+  psy-service:
+    build:
+      context: ./packages/psy-service
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://admin:admin123@mongodb:27017/psy_db?authSource=admin
+      - PSY_SERVICE_PORT=3004
+    depends_on:
+      - mongodb
+    volumes:
+      - ./packages/psy-service:/app
+      - /app/node_modules
 
 volumes:
   postgres_data:
-  redis_data: 
+  redis_data:
+  rabbitmq_data:
+  mongodb_data: 

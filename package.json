@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/gregormammoth/redis-rabbit-jwt/issues"
   },
-  "homepage": "https://github.com/gregormammoth/redis-rabbit-jwt#readme"
+  "homepage": "https://github.com/gregormammoth/redis-rabbit-jwt#readme",
+  "volta": {
+    "node": "18.20.8"
+  }
 }
