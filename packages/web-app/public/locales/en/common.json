@@ -8,6 +8,48 @@
     "login": "Login",
     "register": "Register"
   },
+  "articles": {
+    "title": "Articles",
+    "description": "Explore our collection of articles on mental health, personal growth, and psychological well-being",
+    "search": {
+      "placeholder": "Search articles...",
+      "noResults": "No articles found matching your search"
+    },
+    "categories": {
+      "all": "All Categories",
+      "anxiety": "Anxiety & Stress",
+      "depression": "Depression",
+      "relationships": "Relationships",
+      "mindfulness": "Mindfulness",
+      "selfEsteem": "Self-Esteem",
+      "trauma": "Trauma & PTSD",
+      "lifeTransitions": "Life Transitions"
+    },
+    "filters": {
+      "title": "Filters",
+      "sortBy": "Sort by",
+      "sortOptions": {
+        "newest": "Newest First",
+        "oldest": "Oldest First",
+        "popular": "Most Popular",
+        "relevance": "Relevance"
+      },
+      "dateRange": "Date Range",
+      "apply": "Apply Filters",
+      "reset": "Reset Filters"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page",
+      "of": "of"
+    },
+    "readMore": "Read More",
+    "readingTime": "{{minutes}} min read",
+    "author": "By {{name}}",
+    "publishedOn": "Published on {{date}}",
+    "relatedArticles": "Related Articles"
+  },
   "home": {
     "banner": {
       "title": "Your Journey to Mental Wellness",
