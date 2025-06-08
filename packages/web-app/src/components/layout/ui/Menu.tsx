@@ -32,7 +32,7 @@ export const Menu: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
             <div className="flex items-center">
-              <a href="/" className="text-2xl font-bold text-white tracking-wide hover:text-primary-200 transition duration-300">
+              <a href="/" className="text-2xl font-bold text-white tracking-wide hover:text-primary-200 transition duration-300 cursor-pointer">
                 {t('menu.portalName')}
               </a>
             </div>
@@ -41,14 +41,14 @@ export const Menu: React.FC = () => {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-white hover:text-primary-200 transition duration-300 font-medium"
+                  className="text-white hover:text-primary-200 transition duration-300 font-medium cursor-pointer"
                 >
                   {t(item.label)}
                 </a>
               ))}
               <div className="relative group">
                 <button 
-                  className="text-white hover:text-primary-200 transition duration-300 font-medium flex items-center"
+                  className="text-white hover:text-primary-200 transition duration-300 font-medium flex items-center cursor-pointer"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                   {languages.find(lang => lang.code === locale)?.name}
@@ -64,7 +64,7 @@ export const Menu: React.FC = () => {
                         handleLanguageChange(lang.code);
                         setIsMenuOpen(false);
                       }}
-                      className={`block w-full text-left px-4 py-2 text-sm ${
+                      className={`block w-full text-left px-4 py-2 text-sm cursor-pointer ${
                         locale === lang.code ? 'bg-primary-100 text-primary-800' : 'text-gray-700 hover:bg-gray-100'
                       }`}
                     >
@@ -77,7 +77,7 @@ export const Menu: React.FC = () => {
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-white hover:text-primary-200 transition duration-300"
+                className="text-white hover:text-primary-200 transition duration-300 cursor-pointer"
               >
                 <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -95,7 +95,7 @@ export const Menu: React.FC = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium"
+                className="block px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium cursor-pointer"
               >
                 {t(item.label)}
               </a>
@@ -108,7 +108,7 @@ export const Menu: React.FC = () => {
                     handleLanguageChange(lang.code);
                     setIsMenuOpen(false);
                   }}
-                  className={`block w-full text-left px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium ${
+                  className={`block w-full text-left px-4 py-3 text-white hover:bg-primary-500 rounded-lg transition duration-300 font-medium cursor-pointer ${
                     locale === lang.code ? 'bg-primary-500' : ''
                   }`}
                 >

@@ -1,15 +1,18 @@
+import { useTranslation } from 'next-i18next';
+
 export default function Therapy() {
+  const { t } = useTranslation('common');
+
   return (
     <div className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
           <div className="mb-12 lg:mb-0 transform hover:scale-105 transition-transform duration-300">
             <h2 className="text-4xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent sm:text-5xl mb-8">
-              Professional Therapy Services
+              {t('home.therapy.title')}
             </h2>
             <p className="text-xl text-gray-700 leading-relaxed mb-8">
-              Our experienced therapists provide personalized mental health support in a safe and confidential environment. 
-              We offer evidence-based treatments tailored to your unique needs and goals.
+              {t('home.therapy.description')}
             </p>
             <ul className="space-y-6">
               <li className="flex items-start group">
@@ -18,7 +21,9 @@ export default function Therapy() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="text-lg text-gray-700 group-hover:text-primary-600 transition-colors duration-300">Individual and group therapy sessions</span>
+                <span className="text-lg text-gray-700 group-hover:text-primary-600 transition-colors duration-300">
+                  {t('home.therapy.features.sessions')}
+                </span>
               </li>
               <li className="flex items-start group">
                 <div className="flex-shrink-0 h-8 w-8 rounded-full bg-primary-100 flex items-center justify-center mr-4 group-hover:bg-primary-500 transition-colors duration-300">
@@ -26,7 +31,9 @@ export default function Therapy() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="text-lg text-gray-700 group-hover:text-primary-600 transition-colors duration-300">Evidence-based treatment approaches</span>
+                <span className="text-lg text-gray-700 group-hover:text-primary-600 transition-colors duration-300">
+                  {t('home.therapy.features.approaches')}
+                </span>
               </li>
               <li className="flex items-start group">
                 <div className="flex-shrink-0 h-8 w-8 rounded-full bg-primary-100 flex items-center justify-center mr-4 group-hover:bg-primary-500 transition-colors duration-300">
@@ -34,7 +41,9 @@ export default function Therapy() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="text-lg text-gray-700 group-hover:text-primary-600 transition-colors duration-300">Flexible scheduling options</span>
+                <span className="text-lg text-gray-700 group-hover:text-primary-600 transition-colors duration-300">
+                  {t('home.therapy.features.scheduling')}
+                </span>
               </li>
             </ul>
           </div>

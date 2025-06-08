@@ -8,6 +8,95 @@
     "login": "Login",
     "register": "Register"
   },
+  "home": {
+    "banner": {
+      "title": "Your Journey to Mental Wellness",
+      "description": "Professional psychological services to support your mental health and personal growth",
+      "bookConsultation": "Book a Consultation",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp"
+    },
+    "problems": {
+      "title": "Problems I Am Solving",
+      "items": {
+        "anxiety": {
+          "title": "Anxiety & Stress",
+          "description": "Managing overwhelming feelings, panic attacks, and daily stress through evidence-based techniques."
+        },
+        "depression": {
+          "title": "Depression",
+          "description": "Addressing persistent sadness, low mood, and lack of motivation with personalized treatment plans."
+        },
+        "relationships": {
+          "title": "Relationship Issues",
+          "description": "Improving communication, resolving conflicts, and building healthier relationships."
+        },
+        "trauma": {
+          "title": "Trauma & PTSD",
+          "description": "Processing past traumatic experiences and developing coping strategies for healing."
+        },
+        "selfEsteem": {
+          "title": "Self-Esteem",
+          "description": "Building confidence, self-worth, and developing a positive self-image."
+        },
+        "transitions": {
+          "title": "Life Transitions",
+          "description": "Navigating major life changes, career shifts, and personal growth challenges."
+        }
+      }
+    },
+    "work": {
+      "title": "How We Work Together",
+      "items": {
+        "individual": {
+          "title": "Individual Therapy",
+          "description": "One-on-one sessions focused on personal growth, healing, and developing coping strategies."
+        },
+        "group": {
+          "title": "Group Therapy",
+          "description": "Supportive group sessions where individuals can share experiences and learn from others."
+        },
+        "online": {
+          "title": "Online Counseling",
+          "description": "Virtual therapy sessions providing accessible mental health support from anywhere."
+        },
+        "workshops": {
+          "title": "Workshops",
+          "description": "Educational workshops on various mental health topics and coping techniques."
+        }
+      }
+    },
+    "therapy": {
+      "title": "Professional Therapy Services",
+      "description": "Our experienced therapists provide personalized mental health support in a safe and confidential environment. We offer evidence-based treatments tailored to your unique needs and goals.",
+      "features": {
+        "sessions": "Individual and group therapy sessions",
+        "approaches": "Evidence-based treatment approaches",
+        "scheduling": "Flexible scheduling options"
+      }
+    },
+    "articles": {
+      "title": "Latest Articles",
+      "items": {
+        "anxiety": {
+          "title": "Understanding Anxiety",
+          "description": "Learn about common anxiety triggers and effective coping strategies for managing daily stress."
+        },
+        "relationships": {
+          "title": "Building Healthy Relationships",
+          "description": "Discover key principles for developing and maintaining healthy relationships in your life."
+        },
+        "mindfulness": {
+          "title": "Mindfulness Practices",
+          "description": "Explore simple mindfulness techniques to improve your mental well-being and reduce stress."
+        }
+      },
+      "navigation": {
+        "previous": "Previous article",
+        "next": "Next article"
+      }
+    }
+  },
   "chat": {
     "description": "Real-time chat with AI Assistant for psychological support",
     "join": "Join Chat",

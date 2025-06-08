@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <Layout
       title={t('menu.portalName')}
-      description="Professional psychology services and resources"
+      description={t('home.banner.description')}
     >
       <Banner />
       <ProblemSolving />

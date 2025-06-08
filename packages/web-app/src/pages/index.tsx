@@ -6,7 +6,7 @@ import Home from '../components/Home/Home';
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'home'])),
     },
   };
 };

@@ -1,18 +1,22 @@
+import { useTranslation } from 'next-i18next';
+
 export default function Slider() {
+  const { t } = useTranslation('common');
+
   const articles = [
     {
-      title: "Understanding Anxiety",
-      description: "Learn about common anxiety triggers and effective coping strategies for managing daily stress.",
+      title: t('home.articles.items.anxiety.title'),
+      description: t('home.articles.items.anxiety.description'),
       image: "/images/anxiety.jpg"
     },
     {
-      title: "Building Healthy Relationships",
-      description: "Discover key principles for developing and maintaining healthy relationships in your life.",
+      title: t('home.articles.items.relationships.title'),
+      description: t('home.articles.items.relationships.description'),
       image: "/images/relationships.jpg"
     },
     {
-      title: "Mindfulness Practices",
-      description: "Explore simple mindfulness techniques to improve your mental well-being and reduce stress.",
+      title: t('home.articles.items.mindfulness.title'),
+      description: t('home.articles.items.mindfulness.description'),
       image: "/images/mindfulness.jpg"
     }
   ];
@@ -22,7 +26,7 @@ export default function Slider() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent sm:text-5xl">
-            Latest Articles
+            {t('home.articles.title')}
           </h2>
           <div className="mt-4 h-1 w-24 bg-gradient-to-r from-primary-500 to-primary-700 mx-auto rounded-full"></div>
         </div>
@@ -58,7 +62,7 @@ export default function Slider() {
           <div className="flex justify-center mt-12 space-x-6">
             <button
               className="p-3 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl"
-              aria-label="Previous article"
+              aria-label={t('home.articles.navigation.previous')}
             >
               <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -66,7 +70,7 @@ export default function Slider() {
             </button>
             <button
               className="p-3 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl"
-              aria-label="Next article"
+              aria-label={t('home.articles.navigation.next')}
             >
               <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

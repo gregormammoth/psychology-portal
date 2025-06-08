@@ -1,23 +1,27 @@
+import { useTranslation } from 'next-i18next';
+
 export default function Work() {
+  const { t } = useTranslation('common');
+
   const workItems = [
     {
-      title: 'Individual Therapy',
-      description: 'One-on-one sessions focused on personal growth, healing, and developing coping strategies.',
+      title: t('home.work.items.individual.title'),
+      description: t('home.work.items.individual.description'),
       icon: '👤'
     },
     {
-      title: 'Group Therapy',
-      description: 'Supportive group sessions where individuals can share experiences and learn from others.',
+      title: t('home.work.items.group.title'),
+      description: t('home.work.items.group.description'),
       icon: '👥'
     },
     {
-      title: 'Online Counseling',
-      description: 'Virtual therapy sessions providing accessible mental health support from anywhere.',
+      title: t('home.work.items.online.title'),
+      description: t('home.work.items.online.description'),
       icon: '💻'
     },
     {
-      title: 'Workshops',
-      description: 'Educational workshops on various mental health topics and coping techniques.',
+      title: t('home.work.items.workshops.title'),
+      description: t('home.work.items.workshops.description'),
       icon: '📚'
     }
   ];
@@ -27,7 +31,7 @@ export default function Work() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent sm:text-5xl animate-fade-in">
-            How We Work Together
+            {t('home.work.title')}
           </h2>
           <div className="mt-4 h-1 w-24 bg-gradient-to-r from-primary-500 to-primary-700 mx-auto rounded-full"></div>
         </div>

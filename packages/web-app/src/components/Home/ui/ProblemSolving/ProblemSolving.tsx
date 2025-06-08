@@ -1,28 +1,32 @@
+import { useTranslation } from 'next-i18next';
+
 export default function ProblemSolving() {
+  const { t } = useTranslation('common');
+
   const problems = [
     {
-      title: 'Anxiety & Stress',
-      description: 'Managing overwhelming feelings, panic attacks, and daily stress through evidence-based techniques.'
+      title: t('home.problems.items.anxiety.title'),
+      description: t('home.problems.items.anxiety.description')
     },
     {
-      title: 'Depression',
-      description: 'Addressing persistent sadness, low mood, and lack of motivation with personalized treatment plans.'
+      title: t('home.problems.items.depression.title'),
+      description: t('home.problems.items.depression.description')
     },
     {
-      title: 'Relationship Issues',
-      description: 'Improving communication, resolving conflicts, and building healthier relationships.'
+      title: t('home.problems.items.relationships.title'),
+      description: t('home.problems.items.relationships.description')
     },
     {
-      title: 'Trauma & PTSD',
-      description: 'Processing past traumatic experiences and developing coping strategies for healing.'
+      title: t('home.problems.items.trauma.title'),
+      description: t('home.problems.items.trauma.description')
     },
     {
-      title: 'Self-Esteem',
-      description: 'Building confidence, self-worth, and developing a positive self-image.'
+      title: t('home.problems.items.selfEsteem.title'),
+      description: t('home.problems.items.selfEsteem.description')
     },
     {
-      title: 'Life Transitions',
-      description: 'Navigating major life changes, career shifts, and personal growth challenges.'
+      title: t('home.problems.items.transitions.title'),
+      description: t('home.problems.items.transitions.description')
     }
   ];
 
@@ -31,7 +35,7 @@ export default function ProblemSolving() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent sm:text-5xl animate-fade-in">
-            Problems I Am Solving
+            {t('home.problems.title')}
           </h2>
           <div className="mt-4 h-1 w-24 bg-gradient-to-r from-primary-500 to-primary-700 mx-auto rounded-full"></div>
         </div>
