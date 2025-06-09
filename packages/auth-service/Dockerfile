@@ -12,4 +12,4 @@ COPY packages/auth-service/src ./packages/auth-service/src
 
 RUN npm run build -w @monorepo/auth-service
 
-CMD ["npm", "run", "start", "-w", "@monorepo/auth-service"] 
+CMD ["npm", "run", "start", "-w", "@monorepo/auth-service"]

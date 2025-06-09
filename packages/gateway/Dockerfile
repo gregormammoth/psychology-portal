@@ -2,15 +2,17 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-COPY packages/gateway/package*.json ./packages/gateway/
-COPY packages/gateway/tsconfig.json ./packages/gateway/
+# Copy all monorepo files (not just package.json)
+COPY . .
 
-RUN npm install
+# Install dependencies at the root (so workspaces are resolved)
+RUN npm install --legacy-peer-deps
 
-COPY packages/gateway/src ./packages/gateway/src
-
+# Build the gateway package
 RUN npm run build -w @monorepo/gateway
+
+# Verify the build output
+RUN ls -la packages/gateway/dist
 
 EXPOSE 3003
 

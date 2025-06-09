@@ -1,15 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  
-  // Enable CORS
-  app.enableCors({
-    origin: 'http://localhost:3000', // Allow requests from your Next.js app
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true,
+  const app = await NestFactory.create(AppModule, {
+    cors: {
+      origin: 'http://localhost:3000',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      credentials: true,
+    },
   });
+  
+  // Enable validation pipes
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(3003);
 }

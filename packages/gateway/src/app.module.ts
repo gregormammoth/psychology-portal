@@ -13,18 +13,24 @@ import { PsyModule } from './psy/psy.module';
     ClientsModule.register([
       {
         name: 'AUTH_SERVICE',
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: process.env.AUTH_SERVICE_HOST || 'auth-service',
-          port: parseInt(process.env.AUTH_SERVICE_PORT || '3001'),
+          urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@rabbitmq:5672'],
+          queue: 'auth_queue',
+          queueOptions: {
+            durable: true,
+          },
         },
       },
       {
         name: 'PSY_SERVICE',
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: process.env.PSY_SERVICE_HOST || 'psy-service',
-          port: parseInt(process.env.PSY_SERVICE_PORT || '3004'),
+          urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@rabbitmq:5672'],
+          queue: 'psy_queue',
+          queueOptions: {
+            durable: true,
+          },
         },
       },
     ]),

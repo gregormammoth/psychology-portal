@@ -1,17 +1,6 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: microservices
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   redis:
     image: redis:7-alpine
     ports:
@@ -36,58 +25,25 @@ services:
       - "3003:3003"
     environment:
       - NODE_ENV=development
-      - AUTH_SERVICE_HOST=auth-service
-      - AUTH_SERVICE_PORT=3001
-      - PSY_SERVICE_HOST=psy-service
-      - PSY_SERVICE_PORT=3004
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
     depends_on:
-      - auth-service
-      - user-service
       - redis
       - rabbitmq
     volumes:
       - ./packages/gateway:/app/packages/gateway
-      - /app/node_modules
-
-  auth-service:
-    build:
-      context: ./packages/auth-service
-      dockerfile: Dockerfile
-    ports:
-      - "3001:3001"
-    environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/auth_db
-      - JWT_SECRET=your-secret-key
-      - JWT_EXPIRATION=1h
-    depends_on:
-      - postgres
-    volumes:
-      - ./packages/auth-service:/app
-      - /app/node_modules
-
-  user-service:
-    build:
-      context: .
-      dockerfile: packages/user-service/Dockerfile
-    depends_on:
-      - postgres
-      - rabbitmq
 
   web-app:
     build:
-      context: ./packages/web-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: packages/web-app/Dockerfile
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
       - NEXT_PUBLIC_API_URL=http://localhost:3003
     volumes:
-      - ./packages/web-app:/app
+      - ./packages/web-app:/app/packages/web-app
       - /app/node_modules
-    depends_on:
-      - auth-service
 
   mongodb:
     image: mongo:6
@@ -116,7 +72,6 @@ services:
       - /app/node_modules
 
 volumes:
-  postgres_data:
   redis_data:
   rabbitmq_data:
   mongodb_data: 
