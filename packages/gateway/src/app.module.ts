@@ -11,26 +11,28 @@ import { PsyModule } from './psy/psy.module';
       isGlobal: true,
     }),
     ClientsModule.register([
-      {
-        name: 'AUTH_SERVICE',
-        transport: Transport.RMQ,
-        options: {
-          urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@rabbitmq:5672'],
-          queue: 'auth_queue',
-          queueOptions: {
-            durable: true,
-          },
-        },
-      },
+      // {
+      //   name: 'AUTH_SERVICE',
+      //   transport: Transport.RMQ,
+      //   options: {
+      //     urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@rabbitmq:5672'],
+      //     queue: 'auth_queue',
+      //     queueOptions: {
+      //       durable: true,
+      //     },
+      //   },
+      // },
       {
         name: 'PSY_SERVICE',
-        transport: Transport.RMQ,
+        transport: Transport.TCP, // Transport.RMQ,
         options: {
-          urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@rabbitmq:5672'],
-          queue: 'psy_queue',
-          queueOptions: {
-            durable: true,
-          },
+          host: process.env.PSY_SERVICE_HOST || 'psy-service',
+          port: parseInt(process.env.PSY_SERVICE_PORT || '3004'),
+          // urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@rabbitmq:5672'],
+          // queue: 'psy_queue',
+          // queueOptions: {
+          //   durable: true,
+          // },
         },
       },
     ]),

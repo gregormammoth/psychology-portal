@@ -57,8 +57,8 @@ services:
 
   psy-service:
     build:
-      context: ./packages/psy-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: packages/psy-service/Dockerfile
     ports:
       - "3004:3004"
     environment:
@@ -68,7 +68,7 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - ./packages/psy-service:/app
+      - ./packages/psy-service:/app/packages/psy-service
       - /app/node_modules
 
 volumes:

@@ -1,45 +1,30 @@
-# Build stage
-FROM node:18-alpine AS builder
-
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-COPY tsconfig.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy source files
-COPY src ./src
-
-# Debug: Show source files
-RUN echo "Source files:" && ls -la src/
-
-# Build the application with verbose output
-RUN npm run build --verbose
-
-# Debug: Show dist files
-RUN echo "Dist files:" && ls -la dist/
-
-# Production stage
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy all monorepo files
+COPY . .
 
-# Install production dependencies only
-RUN npm install --only=production
+# Install dependencies at the root (so workspaces are resolved)
+RUN npm install --legacy-peer-deps
 
-# Copy built files from builder stage
-COPY --from=builder /app/dist ./dist
+# Build the psy-service package
+RUN npm run build -w @monorepo/psy-service
 
-# Debug: Show final files
-RUN echo "Final files:" && ls -la && echo "Dist contents:" && ls -la dist/
+# Verify the build output
+RUN ls -la packages/psy-service/dist
 
-EXPOSE 3002
+EXPOSE 3004
 
-# Start the application
-CMD ["node", "dist/main"] 
+CMD ["npm", "run", "start", "-w", "@monorepo/psy-service"] 
+# COPY . .
+
+# Install dependencies at the root
+# RUN npm install --legacy-peer-deps
+
+# Build the psy-service package
+# RUN cd packages/psy-service && npm run build
+
+# EXPOSE 3004
+
+# CMD ["npm", "run", "start", "--prefix", "packages/psy-service"] 
