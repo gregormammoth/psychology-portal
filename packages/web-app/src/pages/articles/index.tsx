@@ -2,7 +2,26 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
-import { Container, Grid, Typography, TextField, Box, Card, CardContent, CardMedia, Button, Chip, Stack, Pagination, FormControl, InputLabel, Select, MenuItem, ThemeProvider } from '@mui/material';
+import { useRouter } from 'next/router';
+import {
+  Container,
+  Grid,
+  Typography,
+  TextField,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+  Chip,
+  Stack,
+  Pagination,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  ThemeProvider,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Search as SearchIcon, FilterList as FilterListIcon } from '@mui/icons-material';
 import { Layout } from '../../components/layout/Layout';
@@ -40,6 +59,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
 const ArticlesPage = () => {
   const { t } = useTranslation('common');
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
@@ -101,6 +121,10 @@ const ArticlesPage = () => {
     setPage(value);
   };
 
+  const handleReadMore = (articleId: number) => {
+    router.push(`/articles/${articleId}`);
+  };
+
   return (
     <Layout
       title={`${t('articles.title')} - ${t('menu.portalName')}`}
@@ -108,9 +132,9 @@ const ArticlesPage = () => {
     >
       <ThemeProvider theme={theme}>
         <Container maxWidth="lg" sx={{ py: 6 }}>
-          <Typography 
-            variant="h3" 
-            component="h1" 
+          <Typography
+            variant="h3"
+            component="h1"
             gutterBottom
             sx={{
               color: 'primary.main',
@@ -121,9 +145,9 @@ const ArticlesPage = () => {
           >
             {t('articles.title')}
           </Typography>
-          <Typography 
-            variant="subtitle1" 
-            color="text.secondary" 
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
             paragraph
             sx={{
               textAlign: 'center',
@@ -251,7 +275,7 @@ const ArticlesPage = () => {
                       },
                     }}
                   />
-                  <CardContent sx={{ 
+                  <CardContent sx={{
                     flexGrow: 1,
                     p: 3,
                     background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)'
@@ -259,16 +283,16 @@ const ArticlesPage = () => {
                     <Chip
                       label={t(`articles.categories.${article.category}`)}
                       size="small"
-                      sx={{ 
+                      sx={{
                         mb: 2,
                         backgroundColor: 'primary.light',
                         color: 'primary.dark',
                         fontWeight: 'medium',
                       }}
                     />
-                    <Typography 
-                      gutterBottom 
-                      variant="h5" 
+                    <Typography
+                      gutterBottom
+                      variant="h5"
                       component="h2"
                       sx={{
                         fontWeight: 'bold',
@@ -278,9 +302,9 @@ const ArticlesPage = () => {
                     >
                       {article.title}
                     </Typography>
-                    <Typography 
-                      variant="body2" 
-                      color="text.secondary" 
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
                       paragraph
                       sx={{
                         mb: 3,
@@ -289,10 +313,10 @@ const ArticlesPage = () => {
                     >
                       {article.description}
                     </Typography>
-                    <Stack 
-                      direction="row" 
-                      spacing={1} 
-                      sx={{ 
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      sx={{
                         mb: 3,
                         color: 'text.secondary',
                       }}
@@ -305,9 +329,10 @@ const ArticlesPage = () => {
                         {t('articles.author', { name: article.author })}
                       </Typography>
                     </Stack>
-                    <Button 
-                      variant="contained" 
+                    <Button
+                      variant="contained"
                       fullWidth
+                      onClick={() => handleReadMore(article.id)}
                       sx={{
                         backgroundColor: 'primary.main',
                         color: 'white',
