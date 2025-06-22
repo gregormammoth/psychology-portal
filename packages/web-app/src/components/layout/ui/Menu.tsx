@@ -13,6 +13,7 @@ export const Menu: React.FC = () => {
     { href: '/', label: 'menu.home' },
     { href: '/chat', label: 'menu.psyAI' },
     { href: '/articles', label: 'menu.articles' },
+    { href: '/faq', label: 'FAQ' },
     { href: '/contacts', label: 'menu.contact' },
   ];
 
