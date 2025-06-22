@@ -24,7 +24,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Search as SearchIcon, FilterList as FilterListIcon } from '@mui/icons-material';
-import { Layout } from '../../components/layout/Layout';
+import { Layout } from '../../components/Layout/Layout';
 import theme from '../../theme';
 
 const StyledCard = styled(Card)(({ theme }) => ({

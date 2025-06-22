@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { Chat } from '../../components/Chat/Chat';
-import { Layout } from '../../components/layout/Layout';
+import { Layout } from '../../components/Layout/Layout';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {

@@ -23,7 +23,7 @@ import {
   AccessTime as AccessTimeIcon,
   CalendarToday as CalendarTodayIcon,
 } from '@mui/icons-material';
-import { Layout } from '../../components/layout/Layout';
+import { Layout } from '../../components/Layout/Layout';
 import theme from '../../theme';
 
 const ArticleHeader = styled(Box)(({ theme }) => ({

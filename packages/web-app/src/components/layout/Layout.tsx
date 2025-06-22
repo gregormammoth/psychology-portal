@@ -23,7 +23,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
       <Menu />
 
-      <main className="bg-primary-50">{children}</main>
+      <main className="bg-primary-50 pt-16">{children}</main>
 
       <Footer />
       <Chat />
