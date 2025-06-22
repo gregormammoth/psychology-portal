@@ -260,9 +260,17 @@ const relatedArticles = [
 ];
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = Object.keys(mockArticles).map((id) => ({
-    params: { id },
-  }));
+  const locales = ['en', 'ru', 'sr'];
+  const paths: Array<{ params: { id: string }; locale: string }> = [];
+
+  locales.forEach((locale) => {
+    Object.keys(mockArticles).forEach((id) => {
+      paths.push({
+        params: { id },
+        locale,
+      });
+    });
+  });
 
   return {
     paths,
