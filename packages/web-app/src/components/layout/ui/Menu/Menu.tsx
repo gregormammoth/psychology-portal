@@ -2,12 +2,12 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
-export const Menu: React.FC = () => {
+export default function Menu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const { t } = useTranslation('common');
   const router = useRouter();
-  const { locale } = router;
+  const { locale, pathname } = router;
 
   const menuItems = [
     { href: '/', label: 'menu.home' },
@@ -24,16 +24,6 @@ export const Menu: React.FC = () => {
   ];
 
   React.useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
       if (isMenuOpen && !target.closest('.language-dropdown')) {
@@ -46,12 +36,16 @@ export const Menu: React.FC = () => {
   }, [isMenuOpen]);
 
   const handleLanguageChange = (newLocale: string) => {
-    const { pathname, asPath, query } = router;
+    const { asPath, query } = router;
     router.push({ pathname, query }, asPath, { locale: newLocale });
   };
 
   const closeMenu = () => {
-    setIsMenuOpen(false);
+    setIsMobileMenuOpen(false);
+  };
+
+  const isCurrentPage = (href: string) => {
+    return pathname === href;
   };
 
   return (
@@ -72,7 +66,11 @@ export const Menu: React.FC = () => {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`transition duration-300 font-medium cursor-pointer text-white hover:text-primary-200`}
+                  className={`transition duration-300 font-medium cursor-pointer ${
+                    isCurrentPage(item.href) 
+                      ? 'text-primary-200 border-b-2 border-primary-200' 
+                      : 'text-white hover:text-primary-200'
+                  }`}
                 >
                   {t(item.label)}
                 </a>
@@ -109,15 +107,11 @@ export const Menu: React.FC = () => {
             </div>
             <div className="md:hidden flex items-center">
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className={`transition duration-300 cursor-pointer ${
-                  isScrolled 
-                    ? 'text-gray-700 hover:text-primary-600' 
-                    : 'text-white hover:text-primary-200'
-                }`}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`transition duration-300 cursor-pointer text-white hover:text-primary-200`}
               >
-                <svg className={`h-6 w-6 transition-transform duration-200 ${isMenuOpen ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  {isMenuOpen ? (
+                <svg className={`h-6 w-6 transition-transform duration-200 ${isMobileMenuOpen ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {isMobileMenuOpen ? (
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   ) : (
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -129,15 +123,19 @@ export const Menu: React.FC = () => {
         </div>
       </nav>
 
-      {isMenuOpen && (
-        <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200">
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-primary-600 to-primary-800 shadow-lg border-b border-gray-200">
           <div className="px-4 pt-4 pb-4 space-y-2">
             {menuItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={closeMenu}
-                className="block px-4 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition duration-300 font-medium cursor-pointer"
+                className={`block px-4 py-3 rounded-lg transition duration-300 font-medium cursor-pointer ${
+                  isCurrentPage(item.href)
+                    ? 'bg-primary-100 text-primary-800'
+                    : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600'
+                }`}
               >
                 {t(item.label)}
               </a>
@@ -148,7 +146,7 @@ export const Menu: React.FC = () => {
                   key={lang.code}
                   onClick={() => {
                     handleLanguageChange(lang.code);
-                    setIsMenuOpen(false);
+                    setIsMobileMenuOpen(false);
                   }}
                   className={`block w-full text-left px-4 py-3 rounded-lg transition duration-300 font-medium cursor-pointer ${
                     locale === lang.code 
