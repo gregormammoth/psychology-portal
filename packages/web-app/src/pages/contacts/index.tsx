@@ -59,6 +59,11 @@ export default function ContactsPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleSelectChange = (event: any) => {
+    const { name, value } = event.target;
+    setFormData(prev => ({ ...prev, [name]: value as string }));
+  };
+
   return (
     <Layout
       title={t('contacts.title')}
@@ -135,7 +140,7 @@ export default function ContactsPage() {
                     name="consultationType"
                     required
                     value={formData.consultationType}
-                    onChange={handleChange}
+                    onChange={handleSelectChange}
                     options={consultationTypes}
                     className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
                   />
@@ -152,7 +157,6 @@ export default function ContactsPage() {
                     required
                     value={formData.preferredDate}
                     onChange={handleChange}
-                    min={new Date().toISOString().split('T')[0]}
                     className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
                   />
                 </div>
@@ -166,7 +170,7 @@ export default function ContactsPage() {
                     name="preferredTime"
                     required
                     value={formData.preferredTime}
-                    onChange={handleChange}
+                    onChange={handleSelectChange}
                     options={timeSlots}
                     className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
                   />

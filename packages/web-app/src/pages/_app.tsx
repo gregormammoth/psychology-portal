@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+// @ts-ignore
 import { appWithTranslation } from 'next-i18next';
 import '../styles/globals.css';
 

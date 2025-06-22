@@ -11,9 +11,9 @@ const variantMapping = {
 
 // Map our custom sizes to MUI sizes
 const sizeMapping = {
-  sm: 'small',
-  md: 'medium',
-  lg: 'large',
+  sm: 'small' as const,
+  md: 'medium' as const,
+  lg: 'large' as const,
 };
 
 // Custom styled MUI Button for secondary variant
