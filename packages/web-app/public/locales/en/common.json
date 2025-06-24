@@ -224,5 +224,37 @@
         "value": "Monday - Friday, 9:00 AM - 6:00 PM"
       }
     }
+  },
+  "seo": {
+    "defaultTitle": "Psychology Portal - Professional Psychological Help in Moscow",
+    "defaultDescription": "Get professional psychological help from experienced psychologists. Individual and family consultations, therapy for anxiety, depression, relationship problems. Online and in-person appointments in Moscow.",
+    "defaultKeywords": "psychologist, psychological help, psychotherapy, psychologist consultation, psychologist Moscow, family psychologist, child psychologist, depression treatment, anxiety treatment, relationship problems, family therapy, individual therapy, online psychologist consultation, book psychologist appointment, psychological support, mental health, personal growth, stress, panic attacks, self-esteem, trauma, PTSD, life transitions, mindfulness, meditation, cognitive behavioral therapy, gestalt therapy, psychoanalysis",
+    "pages": {
+      "home": {
+        "title": "Psychology Portal - Professional Psychological Help in Moscow",
+        "description": "Get professional psychological help from experienced psychologists. Individual and family consultations, therapy for anxiety, depression, relationship problems. Online and in-person appointments in Moscow.",
+        "keywords": "psychologist, psychological help, psychotherapy, psychologist consultation, psychologist Moscow, family psychologist, child psychologist, depression treatment, anxiety treatment, relationship problems, family therapy, individual therapy, online psychologist consultation, book psychologist appointment"
+      },
+      "chat": {
+        "title": "AI Assistant - Online Psychological Support | Psychology Portal",
+        "description": "Get instant psychological support from AI assistant. Anonymous consultations, advice on overcoming stress, anxiety and other psychological problems. Free and confidential.",
+        "keywords": "AI psychologist, online psychological support, chat with psychologist, anonymous consultation, free psychological help, AI assistant, 24/7 psychological support, online therapy, virtual psychologist"
+      },
+      "articles": {
+        "title": "Psychology Articles - Useful Materials on Mental Health",
+        "description": "Read psychology articles from professional psychologists. Useful materials on anxiety, depression, relationships, self-esteem, stress and personal growth. Expert advice and practical recommendations.",
+        "keywords": "psychology articles, psychological articles, mental health, relationship psychology, anxiety treatment, depression treatment, self-esteem, stress, personal growth, psychological advice, expert psychology"
+      },
+      "contacts": {
+        "title": "Book a Psychologist - Contacts and Consultation Booking",
+        "description": "Book a consultation with a professional psychologist in Moscow. Individual, family and group sessions. Online and in-person consultations. Contact information and booking form.",
+        "keywords": "book psychologist, psychologist consultation, appointment booking, psychologist Moscow, psychologist contacts, online consultation, in-person consultation, family psychologist, child psychologist"
+      },
+      "faq": {
+        "title": "Frequently Asked Questions - Psychology Portal",
+        "description": "Answers to frequently asked questions about psychological consultations, therapy methods, service costs and treatment process. Get all the necessary information before booking a psychologist.",
+        "keywords": "frequently asked questions, FAQ psychologist, psychotherapy questions, psychologist consultation cost, therapy methods, treatment process, consultation preparation"
+      }
+    }
   }
 } 

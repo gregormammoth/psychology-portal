@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://psychologyportal.com/sitemap.xml
+
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+Crawl-delay: 1 
