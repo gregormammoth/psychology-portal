@@ -48,7 +48,8 @@
     "readingTime": "{{minutes}} min read",
     "author": "By {{name}}",
     "publishedOn": "Published on {{date}}",
-    "relatedArticles": "Related Articles"
+    "relatedArticles": "Related Articles",
+    "relatedArticlesDescription": "We also recommend reading these articles on the topic"
   },
   "home": {
     "banner": {
@@ -255,6 +256,54 @@
         "description": "Answers to frequently asked questions about psychological consultations, therapy methods, service costs and treatment process. Get all the necessary information before booking a psychologist.",
         "keywords": "frequently asked questions, FAQ psychologist, psychotherapy questions, psychologist consultation cost, therapy methods, treatment process, consultation preparation"
       }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Find answers to common questions about psychology and therapy services",
+    "subtitle": "Find answers to common questions about our psychology services and therapy process",
+    "questions": {
+      "therapy": {
+        "question": "What is therapy and how can it help me?",
+        "answer": "Therapy is a collaborative process between you and a trained mental health professional. It provides a safe, confidential space to explore your thoughts, feelings, and behaviors. Therapy can help you develop coping strategies, gain insight into patterns, and work toward your personal goals for mental wellness."
+      },
+      "duration": {
+        "question": "How long does therapy typically last?",
+        "answer": "The duration of therapy varies greatly depending on your individual needs, goals, and circumstances. Some people benefit from short-term therapy (6-12 sessions), while others engage in longer-term work. We will regularly assess your progress and adjust the treatment plan as needed."
+      },
+      "confidentiality": {
+        "question": "Is everything I share in therapy confidential?",
+        "answer": "Yes, confidentiality is a cornerstone of therapy. Everything you share is kept strictly confidential, with very limited exceptions required by law (such as imminent risk of harm to yourself or others). We will discuss confidentiality limits during your first session."
+      },
+      "preparation": {
+        "question": "How should I prepare for my first therapy session?",
+        "answer": "Come as you are! There is no special preparation needed. You might want to think about what brought you to therapy and what you hope to achieve. Bring any questions you have about the process. Most importantly, be open and honest about your experiences."
+      },
+      "online": {
+        "question": "Do you offer online therapy sessions?",
+        "answer": "Yes, we offer secure online therapy sessions via video call. Online therapy can be just as effective as in-person sessions and offers greater flexibility and accessibility. We use secure, HIPAA-compliant platforms to ensure your privacy and safety."
+      },
+      "emergency": {
+        "question": "What should I do in a mental health emergency?",
+        "answer": "If you are experiencing a mental health emergency or having thoughts of self-harm, please call emergency services (911) or go to your nearest emergency room immediately. You can also contact the National Suicide Prevention Lifeline at 988 for 24/7 support."
+      },
+      "medication": {
+        "question": "Do you prescribe medication?",
+        "answer": "As a psychologist, I do not prescribe medication. However, I work closely with psychiatrists and other medical professionals when medication might be beneficial as part of your treatment plan. I can provide referrals and coordinate care as needed."
+      },
+      "family": {
+        "question": "Can family members or friends join my therapy sessions?",
+        "answer": "In some cases, involving family members or close friends can be beneficial. This depends on your goals, comfort level, and the nature of your concerns. We can discuss whether family or couples sessions might be helpful for your specific situation."
+      }
+    },
+    "askQuestion": {
+      "title": "Have a Question?",
+      "email": "Your Email",
+      "emailPlaceholder": "your.email@example.com",
+      "question": "Your Question",
+      "questionPlaceholder": "What would you like to know about our services?",
+      "submit": "Send Question",
+      "responseTime": "We typically respond to questions within 24 hours during business days."
     }
   }
 } 
