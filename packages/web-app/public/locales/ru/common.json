@@ -232,7 +232,8 @@
       "mindfulness": "Осознанность",
       "selfEsteem": "Самооценка",
       "trauma": "Травма и ПТСР",
-      "lifeTransitions": "Жизненные перемены"
+      "lifeTransitions": "Жизненные перемены",
+      "autism": "Аутизм и нейроотличия"
     },
     "filters": {
       "title": "Фильтры",
@@ -257,7 +258,9 @@
     "readingTime": "Время чтения: {{minutes}} мин",
     "author": "Автор: {{name}}",
     "publishedOn": "Опубликовано {{date}}",
-    "relatedArticles": "Похожие статьи"
+    "relatedArticles": "Похожие статьи",
+    "relatedArticlesDescription": "Рекомендуем также прочитать эти статьи по теме",
+    "backToArticles": "Назад к статьям"
   },
   "seo": {
     "defaultTitle": "Екатерина Иванова - Клинический психолог, КПТ | Консультации онлайн",

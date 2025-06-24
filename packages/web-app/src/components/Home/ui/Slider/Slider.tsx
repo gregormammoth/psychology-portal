@@ -1,32 +1,16 @@
 import { useTranslation } from 'next-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { useRouter } from 'next/router';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { mockArticles } from '@/model/constants';
 
 export default function Slider() {
   const { t } = useTranslation('common');
-
-  const articles = [
-    {
-      title: t('home.articles.items.anxiety.title'),
-      description: t('home.articles.items.anxiety.description'),
-      image: '/images/anxiety.jpg'
-    },
-    {
-      title: t('home.articles.items.relationships.title'),
-      description: t('home.articles.items.relationships.description'),
-      image: '/images/relationships.jpg'
-    },
-    {
-      title: t('home.articles.items.mindfulness.title'),
-      description: t('home.articles.items.mindfulness.description'),
-      image: '/images/mindfulness.jpg'
-    },
-  ];
-
+  const router = useRouter();
   return (
     <div className="py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +20,7 @@ export default function Slider() {
           </h2>
           <div className="mt-4 h-1 w-24 bg-gradient-to-r from-primary-500 to-primary-700 mx-auto rounded-full"></div>
         </div>
-        
+
         <div className="relative">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
@@ -70,7 +54,7 @@ export default function Slider() {
             }}
             className="articles-swiper"
           >
-            {articles.map((article, index) => (
+            {mockArticles.map((article, index) => (
               <SwiperSlide key={index}>
                 <div className="transform hover:scale-105 transition-transform duration-300">
                   <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:border-primary-200 transition-colors duration-300 h-full">
@@ -81,20 +65,23 @@ export default function Slider() {
                         className="w-full h-56 object-cover"
                       />
                     </div>
-                    <div className="p-8">
+                    <div className="p-8 flex flex-col h-full">
                       <h3 className="text-2xl font-bold text-primary-700 mb-4 group-hover:text-primary-600 transition-colors duration-300">
                         {article.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {article.description}
-                      </p>
+                      <button
+                        onClick={() => router.push(`/articles/${article.id}`)}
+                        className="mt-6 w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                      >
+                        {t('articles.readMore')}
+                      </button>
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-          
+
           <div className="flex justify-center items-center mt-12 space-x-6">
             <button
               className="swiper-button-prev-custom p-3 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl"
@@ -104,9 +91,9 @@ export default function Slider() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            
+
             <div className="swiper-pagination-custom flex space-x-2"></div>
-            
+
             <button
               className="swiper-button-next-custom p-3 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl"
               aria-label={t('home.articles.navigation.next')}
@@ -118,7 +105,7 @@ export default function Slider() {
           </div>
         </div>
       </div>
-      
+
       <style jsx global>{`
         .articles-swiper {
           padding-bottom: 20px;

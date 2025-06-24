@@ -27,6 +27,7 @@ import { Search as SearchIcon, FilterList as FilterListIcon } from '@mui/icons-m
 import { Layout } from '../../components/Layout/Layout';
 import SEO from '../../components/SEO';
 import theme from '../../theme';
+import { mockArticles } from '@/model/constants';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: '100%',
@@ -66,40 +67,6 @@ const ArticlesPage = () => {
   const [sortBy, setSortBy] = useState('newest');
   const [page, setPage] = useState(1);
 
-  // Mock data for articles
-  const articles = [
-    {
-      id: 1,
-      title: 'Understanding and Managing Anxiety in Daily Life',
-      description: 'Learn practical strategies to cope with anxiety and improve your mental well-being through evidence-based techniques.',
-      image: '/images/anxiety.jpg',
-      category: 'anxiety',
-      readingTime: 5,
-      author: 'Dr. Sarah Johnson',
-      date: '2024-03-15',
-    },
-    {
-      id: 2,
-      title: 'Building Healthy Relationships: A Guide to Better Connections',
-      description: 'Discover the key elements of maintaining healthy relationships and improving communication with loved ones.',
-      image: '/images/relationships.jpg',
-      category: 'relationships',
-      readingTime: 7,
-      author: 'Dr. Michael Chen',
-      date: '2024-03-14',
-    },
-    {
-      id: 3,
-      title: 'Mindfulness Meditation: A Path to Inner Peace',
-      description: 'Explore the benefits of mindfulness meditation and learn simple techniques to incorporate into your daily routine.',
-      image: '/images/mindfulness.jpg',
-      category: 'mindfulness',
-      readingTime: 4,
-      author: 'Dr. Emma Wilson',
-      date: '2024-03-13',
-    },
-  ];
-
   const categories = [
     { value: 'all', label: t('articles.categories.all') },
     { value: 'anxiety', label: t('articles.categories.anxiety') },
@@ -109,6 +76,7 @@ const ArticlesPage = () => {
     { value: 'selfEsteem', label: t('articles.categories.selfEsteem') },
     { value: 'trauma', label: t('articles.categories.trauma') },
     { value: 'lifeTransitions', label: t('articles.categories.lifeTransitions') },
+    { value: 'autism', label: t('articles.categories.autism') },
   ];
 
   const sortOptions = [
@@ -263,7 +231,7 @@ const ArticlesPage = () => {
             </FilterSection>
 
             <Grid container spacing={4}>
-              {articles.map((article) => (
+              {mockArticles.map((article) => (
                 <Grid item key={article.id} xs={12} sm={6} md={4}>
                   <StyledCard sx={{
                     borderRadius: 2,

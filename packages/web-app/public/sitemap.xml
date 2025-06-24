@@ -3,12 +3,11 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://psychologyportal.com/ru</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://psychologyportal.com/en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru"/>
-    <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://psychologyportal.com"/>
-    <lastmod>2024-12-19</lastmod>
+    <loc>https://psychologyportal.com/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://psychologyportal.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/"/>
+    <lastmod>2024-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -19,8 +18,8 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/chat"/>
     <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/chat"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://psychologyportal.com/chat"/>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2024-04-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
@@ -30,9 +29,49 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/articles"/>
     <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/articles"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://psychologyportal.com/articles"/>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2024-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://psychologyportal.com/ru/articles/1</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://psychologyportal.com/en/articles/1"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/articles/1"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/articles/1"/>
+    <lastmod>2024-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://psychologyportal.com/ru/articles/2</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://psychologyportal.com/en/articles/2"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/articles/2"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/articles/2"/>
+    <lastmod>2024-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://psychologyportal.com/ru/articles/3</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://psychologyportal.com/en/articles/3"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/articles/3"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/articles/3"/>
+    <lastmod>2024-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://psychologyportal.com/ru/articles/4</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://psychologyportal.com/en/articles/4"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/articles/4"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/articles/4"/>
+    <lastmod>2024-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <url>
@@ -41,9 +80,9 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/contacts"/>
     <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/contacts"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://psychologyportal.com/contacts"/>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2024-04-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -52,7 +91,7 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/faq"/>
     <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/faq"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://psychologyportal.com/faq"/>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2024-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -63,7 +102,7 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://psychologyportal.com/ru/login"/>
     <xhtml:link rel="alternate" hreflang="sr" href="https://psychologyportal.com/sr/login"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://psychologyportal.com/login"/>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2024-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
