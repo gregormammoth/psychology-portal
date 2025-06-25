@@ -9,7 +9,7 @@ export default async function handler(
   }
 
   try {
-    const response = await fetch('http://gateway:3003/api/contacts', {
+    const response = await fetch('http://localhost:3003/api/contacts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
