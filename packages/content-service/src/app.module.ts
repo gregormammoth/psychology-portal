@@ -3,7 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
-import { User, UserSchema } from './entities/user.entity';
+import { ContactController } from './contact.controller';
+import { ContactService } from './contact.service';
+import { User, UserSchema } from './schemas/user.schema';
+import { Contact, ContactSchema } from './schemas/contact.schema';
 
 @Module({
   imports: [
@@ -17,9 +20,12 @@ import { User, UserSchema } from './entities/user.entity';
       }),
       inject: [ConfigService],
     }),
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
+      { name: Contact.name, schema: ContactSchema },
+    ]),
   ],
-  controllers: [UserController],
-  providers: [UserService],
+  controllers: [UserController, ContactController],
+  providers: [UserService, ContactService],
 })
 export class AppModule {} 

@@ -51,8 +51,36 @@ export default function ContactsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission
-    console.log('Form submitted:', formData);
+    
+    try {
+      const response = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Contact form submitted successfully:', result);
+        alert('Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          preferredDate: '',
+          preferredTime: '',
+          consultationType: '',
+          message: '',
+        });
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

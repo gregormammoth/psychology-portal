@@ -1,7 +1,7 @@
 {
-  "name": "@monorepo/user-service",
+  "name": "@monorepo/content-service",
   "version": "1.0.0",
-  "description": "User management microservice",
+  "description": "Content management microservice",
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",

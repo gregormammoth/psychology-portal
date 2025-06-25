@@ -9,9 +9,9 @@ async function bootstrap() {
       transport: Transport.RMQ,
       options: {
         urls: ['amqp://rabbitmq:5672'],
-        queue: 'user_queue',
+        queue: 'psychology_content_queue',
         queueOptions: {
-          durable: true,
+          durable: false,
         },
       },
     },
