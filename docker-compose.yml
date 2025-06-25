@@ -78,6 +78,20 @@ services:
       - rabbitmq
       - mongodb
 
+  analytics-service:
+    build:
+      context: .
+      dockerfile: packages/analytics-service/Dockerfile
+    ports:
+      - "3004:3004"
+    depends_on:
+      - rabbitmq
+      - mongodb
+    environment:
+      - NODE_ENV=production
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+      - MONGODB_URL=mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin
+
   web-app:
     build:
       context: .
