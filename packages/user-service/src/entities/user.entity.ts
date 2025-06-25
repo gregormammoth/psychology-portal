@@ -1,19 +1,21 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-@Entity('test')
+export type UserDocument = User & Document;
+
+@Schema({ timestamps: true })
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ unique: true })
+  @Prop({ required: true, unique: true })
   email: string;
 
-  @Column()
+  @Prop({ required: true })
   password: string;
 
-  @Column()
+  @Prop({ required: true })
   name: string;
 
-  @Column({ name: 'is_active', default: true })
+  @Prop({ default: true })
   isActive: boolean;
-} 
+}
+
+export const UserSchema = SchemaFactory.createForClass(User); 

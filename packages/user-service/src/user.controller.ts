@@ -7,7 +7,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @MessagePattern({ cmd: 'get_user' })
-  async getUser(@Payload() data: { id: number }) {
+  async getUser(@Payload() data: { id: string }) {
     return this.userService.getUser(data.id);
   }
 
@@ -17,12 +17,12 @@ export class UserController {
   }
 
   @MessagePattern({ cmd: 'update_user' })
-  async updateUser(@Payload() data: { id: number; name: string }) {
+  async updateUser(@Payload() data: { id: string; name: string }) {
     return this.userService.updateUser(data.id, data.name);
   }
 
   @MessagePattern({ cmd: 'delete_user' })
-  async deleteUser(@Payload() data: { id: number }) {
+  async deleteUser(@Payload() data: { id: string }) {
     return this.userService.deleteUser(data.id);
   }
 } 

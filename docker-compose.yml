@@ -1,17 +1,6 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: microservices
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   redis:
     image: redis:7-alpine
     ports:
@@ -56,17 +45,21 @@ services:
     build:
       context: .
       dockerfile: packages/auth-service/Dockerfile
+    environment:
+      - MONGODB_URL=mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin
     depends_on:
       - redis
       - rabbitmq
-      - postgres
+      - mongodb
 
   user-service:
     build:
       context: .
       dockerfile: packages/user-service/Dockerfile
+    environment:
+      - MONGODB_URL=mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin
     depends_on:
-      - postgres
+      - mongodb
       - rabbitmq
 
   chat-service:
@@ -95,6 +88,5 @@ services:
       - gateway
 
 volumes:
-  postgres_data:
   redis_data:
   mongodb_data: 

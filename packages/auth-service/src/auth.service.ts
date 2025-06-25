@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { User } from './entities/user.entity';
+import { User, UserDocument } from './entities/user.entity';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import { RedisService } from './redis/redis.service';
@@ -11,8 +11,8 @@ import { RedisService } from './redis/redis.service';
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectModel(User.name)
+    private readonly userModel: Model<UserDocument>,
     private readonly jwtService: JwtService,
     private readonly redisService: RedisService,
   ) {}
@@ -20,30 +20,29 @@ export class AuthService {
   async register(registerDto: RegisterDto) {
     const { email, password, name } = registerDto;
 
-    const existingUser = await this.userRepository.findOne({ where: { email } });
+    const existingUser = await this.userModel.findOne({ email }).exec();
     if (existingUser) {
       throw new UnauthorizedException('Email already exists');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = this.userRepository.create({
+    const user = new this.userModel({
       email,
       password: hashedPassword,
       name,
     });
 
-    await this.userRepository.save(user);
-    const token = this.jwtService.sign({ sub: user.id, email: user.email });
+    const savedUser = await user.save();
+    const token = this.jwtService.sign({ sub: savedUser.id, email: savedUser.email });
     
-    // Store token in Redis
-    await this.redisService.setToken(user.id.toString(), token);
+    await this.redisService.setToken(savedUser.id.toString(), token);
 
     return { token };
   }
 
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
-    const user = await this.userRepository.findOne({ where: { email } });
+    const user = await this.userModel.findOne({ email }).exec();
 
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
@@ -56,7 +55,6 @@ export class AuthService {
 
     const token = this.jwtService.sign({ sub: user.id, email: user.email });
     
-    // Store token in Redis
     await this.redisService.setToken(user.id.toString(), token);
 
     return { token };
@@ -65,13 +63,12 @@ export class AuthService {
   async validateToken(token: string) {
     try {
       const payload = this.jwtService.verify(token);
-      const user = await this.userRepository.findOne({ where: { id: payload.sub } });
+      const user = await this.userModel.findById(payload.sub).exec();
       
       if (!user) {
         throw new UnauthorizedException();
       }
 
-      // Verify token in Redis
       const storedToken = await this.redisService.getToken(user.id.toString());
       if (storedToken !== token) {
         throw new UnauthorizedException();

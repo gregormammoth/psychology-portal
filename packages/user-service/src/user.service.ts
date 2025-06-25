@@ -1,17 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { User, UserDocument } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectModel(User.name)
+    private readonly userModel: Model<UserDocument>,
   ) {}
 
-  async getUser(id: number) {
-    const user = await this.userRepository.findOne({ where: { id } });
+  async getUser(id: string) {
+    const user = await this.userModel.findById(id).exec();
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -19,18 +19,28 @@ export class UserService {
   }
 
   async getUsers() {
-    return this.userRepository.find();
+    return this.userModel.find().exec();
   }
 
-  async updateUser(id: number, name: string) {
-    const user = await this.getUser(id);
-    user.name = name;
-    return this.userRepository.save(user);
+  async updateUser(id: string, name: string) {
+    const user = await this.userModel.findByIdAndUpdate(
+      id,
+      { name },
+      { new: true }
+    ).exec();
+    
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    
+    return user;
   }
 
-  async deleteUser(id: number) {
-    const user = await this.getUser(id);
-    await this.userRepository.remove(user);
+  async deleteUser(id: string) {
+    const user = await this.userModel.findByIdAndDelete(id).exec();
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
     return { message: 'User deleted successfully' };
   }
 } 
