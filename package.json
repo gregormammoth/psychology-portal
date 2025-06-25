@@ -9,10 +9,11 @@
     "dev": "lerna run dev --parallel",
     "build": "lerna run build",
     "test": "lerna run test",
-    "clean": "lerna clean"
+    "clean": "lerna clean",
+    "init": "lerna init"
   },
   "devDependencies": {
-    "lerna": "^8.1.9"
+    "lerna": "^8.2.2"
   },
   "description": "",
   "repository": {
@@ -31,5 +32,6 @@
   },
   "engines": {
     "node": ">=22.11.0"
-  }
+  },
+  "dependencies": {}
 }
