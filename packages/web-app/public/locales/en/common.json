@@ -304,10 +304,18 @@
       "title": "Have a Question?",
       "email": "Your Email",
       "emailPlaceholder": "your.email@example.com",
+      "name": "Your Name (Optional)",
+      "namePlaceholder": "John Doe",
       "question": "Your Question",
       "questionPlaceholder": "What would you like to know about our services?",
+      "category": "Category (Optional)",
+      "categoryPlaceholder": "Select a category",
       "submit": "Send Question",
-      "responseTime": "We typically respond to questions within 24 hours during business days."
+      "responseTime": "We typically respond to questions within 24 hours during business days.",
+      "notifications": {
+        "success": "Your question has been submitted successfully! We will respond to you via email.",
+        "error": "An error occurred while submitting your question. Please try again."
+      }
     }
   }
 } 
