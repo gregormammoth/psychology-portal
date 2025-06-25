@@ -206,6 +206,10 @@
       },
       "submit": "Book Consultation"
     },
+    "notifications": {
+      "success": "Your request has been successfully submitted! We will contact you shortly.",
+      "error": "An error occurred while submitting the form. Please try again."
+    },
     "contactInfo": {
       "title": "Contact Information",
       "address": {

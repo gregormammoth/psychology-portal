@@ -7,6 +7,8 @@ import { Textarea } from '../../components/ui/Textarea';
 import { Select } from '../../components/ui/Select';
 import { Layout } from '../../components/Layout/Layout';
 import SEO from '../../components/SEO';
+import Notification from '../../components/ui/Notification';
+import { useNotification } from '../../hooks/useNotification';
 
 interface BookingFormData {
   name: string;
@@ -28,6 +30,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 
 export default function ContactsPage() {
   const { t } = useTranslation('common');
+  const { notification, showSuccess, showError, hideNotification } = useNotification();
   const [formData, setFormData] = useState<BookingFormData>({
     name: '',
     email: '',
@@ -53,7 +56,7 @@ export default function ContactsPage() {
     e.preventDefault();
     
     try {
-      const response = await fetch('/api/contacts', {
+      const response = await fetch('http://localhost:3003/api/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +67,7 @@ export default function ContactsPage() {
       if (response.ok) {
         const result = await response.json();
         console.log('Contact form submitted successfully:', result);
-        alert('Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+        showSuccess(t('contacts.notifications.success'));
         setFormData({
           name: '',
           email: '',
@@ -79,7 +82,7 @@ export default function ContactsPage() {
       }
     } catch (error) {
       console.error('Error submitting contact form:', error);
-      alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.');
+      showError(t('contacts.notifications.error'));
     }
   };
 
@@ -283,6 +286,12 @@ export default function ContactsPage() {
           </div>
         </div>
       </Layout>
+      <Notification
+        type={notification.type}
+        message={notification.message}
+        isVisible={notification.isVisible}
+        onClose={hideNotification}
+      />
     </>
   );
 }
