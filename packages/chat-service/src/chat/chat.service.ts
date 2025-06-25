@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ChatGroq } from '@langchain/groq';
+import { AIMessage, HumanMessage, SystemMessage } from '@langchain/core/messages';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -85,19 +86,12 @@ export class ChatService {
         Consider the context of previous messages when providing responses.`;
 
       const messages = [
-        {
-          role: 'system',
-          content: systemPrompt,
-        },
+        new SystemMessage(systemPrompt),
         // Include last 5 messages for context
-        ...userHistory.slice(-5).map(msg => ({
-          role: msg.isAI ? 'assistant' : 'user',
-          content: msg.text,
-        })),
-        {
-          role: 'user',
-          content: userMessage,
-        },
+        ...userHistory.slice(-5).map(msg => 
+          msg.isAI ? new AIMessage(msg.text) : new HumanMessage(msg.text)
+        ),
+        new HumanMessage(userMessage),
       ];
 
       const response = await this.chatModel.invoke(messages);

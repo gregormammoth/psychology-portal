@@ -37,6 +37,7 @@ services:
     depends_on:
       - auth-service
       - user-service
+      - chat-service
       - redis
       - rabbitmq
 
@@ -55,6 +56,20 @@ services:
       dockerfile: packages/user-service/Dockerfile
     depends_on:
       - postgres
+      - rabbitmq
+
+  chat-service:
+    build:
+      context: .
+      dockerfile: packages/chat-service/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - CLIENT_URL=http://localhost:3000
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - redis
       - rabbitmq
 
   web-app:
