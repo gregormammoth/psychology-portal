@@ -53,20 +53,18 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   async handleMessage(client: Socket, message: { text: string }) {
     const username = this.chatService.getUser(client.id);
     if (!username) {
-      return; // Skip message handling if user not found
+      return;
     }
     
-    // Create and send user message
-    const userMessage = this.chatService.createMessage(
+    const userMessage = await this.chatService.createMessage(
       message.text,
       client.id,
       username,
     );
     client.emit('message:receive', userMessage);
 
-    // Generate and send AI response
     const aiResponse = await this.chatService.generateAIResponse(message.text, client.id);
-    const aiMessage = this.chatService.createMessage(
+    const aiMessage = await this.chatService.createMessage(
       aiResponse,
       'ai',
       'AI Assistant',

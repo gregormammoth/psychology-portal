@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { ChatGroq } from '@langchain/groq';
 import { AIMessage, HumanMessage, SystemMessage } from '@langchain/core/messages';
+import { Message, MessageDocument } from '../schemas/message.schema';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -10,7 +13,7 @@ export interface User {
   username: string;
 }
 
-export interface Message {
+export interface MessageInterface {
   id: string;
   text: string;
   from: string;
@@ -23,9 +26,10 @@ export interface Message {
 export class ChatService {
   private activeUsers: Map<string, string> = new Map();
   private chatModel: ChatGroq;
-  private messageHistory: Map<string, Message[]> = new Map();
 
-  constructor() {
+  constructor(
+    @InjectModel(Message.name) private messageModel: Model<MessageDocument>,
+  ) {
     this.chatModel = new ChatGroq({
       apiKey: process.env.GROQ_API_KEY,
       model: 'meta-llama/llama-4-scout-17b-16e-instruct',
@@ -37,12 +41,10 @@ export class ChatService {
 
   addUser(userId: string, username: string): void {
     this.activeUsers.set(userId, username);
-    this.messageHistory.set(userId, []);
   }
 
   removeUser(userId: string): void {
     this.activeUsers.delete(userId);
-    this.messageHistory.delete(userId);
   }
 
   getUser(userId: string): string | undefined {
@@ -53,28 +55,48 @@ export class ChatService {
     return Array.from(this.activeUsers.entries());
   }
 
-  createMessage(text: string, from: string, fromUsername: string, isAI: boolean = false): Message {
-    const message = {
-      id: Date.now().toString(),
+  async createMessage(text: string, from: string, fromUsername: string, isAI: boolean = false): Promise<MessageInterface> {
+    const messageData = {
       text,
       from,
       fromUsername,
-      timestamp: new Date().toISOString(),
       isAI,
+      sessionId: from,
+      timestamp: new Date(),
     };
 
-    // Store message in history if it's from a user
-    if (!isAI && from !== 'ai') {
-      const userHistory = this.messageHistory.get(from) || [];
-      this.messageHistory.set(from, [...userHistory, message]);
-    }
+    const savedMessage = await this.messageModel.create(messageData);
 
-    return message;
+    return {
+      id: savedMessage.id.toString(),
+      text: savedMessage.text,
+      from: savedMessage.from,
+      fromUsername: savedMessage.fromUsername,
+      timestamp: savedMessage.timestamp.toISOString(),
+      isAI: savedMessage.isAI,
+    };
+  }
+
+  async getMessageHistory(userId: string, limit: number = 10): Promise<MessageInterface[]> {
+    const messages = await this.messageModel
+      .find({ sessionId: userId })
+      .sort({ timestamp: -1 })
+      .limit(limit)
+      .exec();
+
+    return messages.reverse().map(msg => ({
+      id: msg.id.toString(),
+      text: msg.text,
+      from: msg.from,
+      fromUsername: msg.fromUsername,
+      timestamp: msg.timestamp.toISOString(),
+      isAI: msg.isAI,
+    }));
   }
 
   async generateAIResponse(userMessage: string, userId: string): Promise<string> {
     const username = this.getUser(userId) || 'there';
-    const userHistory = this.messageHistory.get(userId) || [];
+    const messageHistory = await this.getMessageHistory(userId, 5);
     
     try {
       const systemPrompt = `You are a helpful AI assistant on psychology portal. 
@@ -87,8 +109,7 @@ export class ChatService {
 
       const messages = [
         new SystemMessage(systemPrompt),
-        // Include last 5 messages for context
-        ...userHistory.slice(-5).map(msg => 
+        ...messageHistory.slice(-5).map(msg => 
           msg.isAI ? new AIMessage(msg.text) : new HumanMessage(msg.text)
         ),
         new HumanMessage(userMessage),
