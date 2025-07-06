@@ -19,7 +19,7 @@ import { Faq, FaqSchema } from './schemas/faq.schema';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        uri: configService.get('MONGODB_URL', 'mongodb://admin:password@localhost:27017/psychology_portal?authSource=admin'),
+        uri: 'mongodb://admin:psypupel@13.61.155.215:27017/psychology_portal?authSource=admin', // TODO: configService.get('MONGODB_URL', 'mongodb://admin:password@localhost:27017/psychology_portal?authSource=admin'),
       }),
       inject: [ConfigService],
     }),

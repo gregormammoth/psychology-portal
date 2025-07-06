@@ -1,23 +1,24 @@
 version: '3.8'
 
 services:
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
+#   redis:
+#     image: redis:7-alpine
+#     ports:
+#       - "6379:6379"
+#     volumes:
+#       - redis_data:/data
 
-  mongodb:
-    image: mongo:7-jammy
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
-      MONGO_INITDB_DATABASE: psychology_portal
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
+  # mongodb:
+  #   image: mongo:7-jammy
+  #   platform: linux/amd64
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: admin
+  #     MONGO_INITDB_ROOT_PASSWORD: psypupel
+  #     MONGO_INITDB_DATABASE: psychology_portal
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongodb_data:/data/db
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -29,78 +30,99 @@ services:
       RABBITMQ_DEFAULT_PASS: guest
 
   gateway:
-    build:
-      context: .
-      dockerfile: packages/gateway/Dockerfile
+    image: 048266892585.dkr.ecr.eu-north-1.amazonaws.com/psychology-gateway:latest
+    # build:
+    #   context: .
+    #   dockerfile: packages/gateway/Dockerfile
+    # platform: linux/amd64
     ports:
       - "3003:3003"
     depends_on:
-      - auth-service
+      # - auth-service
       - content-service
       - chat-service
-      - redis
+      # - redis
       - rabbitmq
 
-  auth-service:
-    build:
-      context: .
-      dockerfile: packages/auth-service/Dockerfile
-    environment:
-      - MONGODB_URL=mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin
-    depends_on:
-      - redis
-      - rabbitmq
-      - mongodb
+  # auth-service:
+  #   build:
+  #     context: .
+  #     dockerfile: packages/auth-service/Dockerfile
+  #   environment:
+  #     - MONGODB_URL=mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin
+  #   depends_on:
+  #     - redis
+  #     - rabbitmq
+  #     - mongodb
 
   content-service:
-    build:
-      context: .
-      dockerfile: packages/content-service/Dockerfile
+    image: 048266892585.dkr.ecr.eu-north-1.amazonaws.com/psychology-content-service:latest
+    # build:
+    #   context: .
+    #   dockerfile: packages/content-service/Dockerfile
+    # platform: linux/amd64
     environment:
-      - MONGODB_URL=mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin
+      - MONGODB_URL=${MONGODB_URL}
     depends_on:
-      - mongodb
+      # - mongodb
       - rabbitmq
 
   chat-service:
-    build:
-      context: .
-      dockerfile: packages/chat-service/Dockerfile
+    image: 048266892585.dkr.ecr.eu-north-1.amazonaws.com/psychology-chat-service:latest
+    # build:
+    #   context: .
+    #   dockerfile: packages/chat-service/Dockerfile
+    # platform: linux/amd64
     ports:
       - "3001:3001"
     environment:
       - PORT=3001
-      - CLIENT_URL=http://localhost:3000
+      - CLIENT_URL=${CLIENT_URL}
       - GROQ_API_KEY=${GROQ_API_KEY}
-      - MONGODB_URL=mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin
+      - MONGODB_URL=${MONGODB_URL}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     depends_on:
-      - redis
+      # - redis
       - rabbitmq
-      - mongodb
+      # - mongodb
 
   analytics-service:
-    build:
-      context: .
-      dockerfile: packages/analytics-service/Dockerfile
+    image: 048266892585.dkr.ecr.eu-north-1.amazonaws.com/psychology-analytics-service:latest
+    # build:
+    #   context: .
+    #   dockerfile: packages/analytics-service/Dockerfile
+    # platform: linux/amd64
     ports:
       - "3004:3004"
     depends_on:
       - rabbitmq
-      - mongodb
+      # - mongodb
     environment:
       - NODE_ENV=production
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
-      - MONGODB_URL=mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin
+      - MONGODB_URL=${MONGODB_URL}
 
-  web-app:
-    build:
-      context: .
-      dockerfile: packages/web-app/Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - gateway
+  # web-app:
+  #   build:
+  #     context: .
+  #     dockerfile: packages/web-app/Dockerfile
+  #   platform: linux/amd64
+  #   ports:
+  #     - "3000:3000"
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 40s
+    # depends_on:
+    #   - gateway
 
 volumes:
-  redis_data:
+  # redis_data:
   mongodb_data: 
