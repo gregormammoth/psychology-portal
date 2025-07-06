@@ -18,7 +18,7 @@ class Analytics {
 
   constructor() {
     this.sessionId = this.getOrCreateSessionId();
-    this.apiEndpoint = process.env.NEXT_PUBLIC_ANALYTICS_API || 'http://localhost:3003/api/analytics';
+    this.apiEndpoint = process.env.NEXT_PUBLIC_ANALYTICS_API || 'http://13.60.225.240:3003/api/analytics';
   }
 
   private getOrCreateSessionId(): string {

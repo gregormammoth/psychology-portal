@@ -11,8 +11,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const endpoint = isLogin ?
-        'http://localhost:3003/auth/login' :
-        'http://localhost:3003/auth/register';
+        'http://13.60.225.240:3003/auth/login' :
+        'http://13.60.225.240:3003/auth/register';
       const data = isLogin ? { email, password } : { email, password, name };
       const response = await axios.post(endpoint, data);
       localStorage.setItem('token', response.data.token);
