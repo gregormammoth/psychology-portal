@@ -14,6 +14,7 @@ export default async function handler(
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
       body: JSON.stringify(req.body),
     });
 

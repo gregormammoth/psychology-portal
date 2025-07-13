@@ -10,9 +10,13 @@ import { ChatService } from './chat.service';
 
 @WebSocketGateway({
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    methods: ['GET', 'POST'],
+    origin: ['http://psychology-frontend-lb-2-1621481893.eu-north-1.elb.amazonaws.com'],
+    // origin: process.env.CORS_ORIGINS 
+    //   ? process.env.CORS_ORIGINS.split(',').map(origin => origin.trim())
+    //   : ['http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
   },
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {

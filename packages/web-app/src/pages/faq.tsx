@@ -80,6 +80,7 @@ export default function FAQ() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           question: formData.question.trim(),
           email: formData.email.trim(),

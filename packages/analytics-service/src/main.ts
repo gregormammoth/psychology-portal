@@ -6,16 +6,19 @@ import { Logger } from '@nestjs/common';
 async function bootstrap() {
   const logger = new Logger('AnalyticsService');
 
-  // Create HTTP application
   const app = await NestFactory.create(AppModule);
-  
-  // Enable CORS
+
+  const corsOrigins = process.env.CORS_ORIGINS 
+    ? process.env.CORS_ORIGINS.split(',').map(origin => origin.trim())
+    : ['http://localhost:3000'];
+
   app.enableCors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: ['http://psychology-frontend-lb-2-1621481893.eu-north-1.elb.amazonaws.com'], // TODO: corsOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
   });
 
-  // Connect microservice
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
@@ -27,11 +30,9 @@ async function bootstrap() {
     },
   });
 
-  // Start microservice
   await app.startAllMicroservices();
   logger.log('Analytics microservice started');
 
-  // Start HTTP server
   const port = process.env.PORT || 3004;
   await app.listen(port);
   logger.log(`Analytics service listening on port ${port}`);

@@ -34,7 +34,11 @@ export const Chat: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:3001');
+    // const newSocket = io('http://localhost:3001');
+    const newSocket = io('http://13.60.225.240:3001', {
+      transports: ['websocket', 'polling'],
+      withCredentials: true,
+    });
     setSocket(newSocket);
 
     return () => {
@@ -163,16 +167,14 @@ export const Chat: React.FC = () => {
               {messages.map(msg => (
                 <div
                   key={msg.id}
-                  className={`mb-4 ${
-                    msg.from === socket?.id ? 'text-right' : 'text-left'
-                  }`}
+                  className={`mb-4 ${msg.from === socket?.id ? 'text-right' : 'text-left'
+                    }`}
                 >
                   <div
-                    className={`inline-block p-3 rounded-lg ${
-                      msg.from === socket?.id
+                    className={`inline-block p-3 rounded-lg ${msg.from === socket?.id
                         ? 'bg-primary-500 text-white'
                         : 'bg-primary-100 text-primary-700'
-                    }`}
+                      }`}
                   >
                     <div className="font-medium">{msg.fromUsername}</div>
                     <div className="whitespace-pre-wrap">{msg.text}</div>
@@ -181,8 +183,8 @@ export const Chat: React.FC = () => {
                     </div>
                     {msg.from === 'ai' && (
                       <div className="mt-2">
-                        <a 
-                          href="/contacts" 
+                        <a
+                          href="/contacts"
                           className="text-primary-600 hover:text-primary-700 underline"
                         >
                           {t('chat.bookConsultation')}

@@ -114,12 +114,13 @@ class Analytics {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(data),
       };
 
-      if (isSync) {
-        options.keepalive = true;
-      }
+      // if (isSync) {
+      //   options.keepalive = true;
+      // }
 
       await fetch(`${this.apiEndpoint}/track`, options);
     } catch (error) {
