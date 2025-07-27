@@ -9,7 +9,7 @@ export default async function handler(
   }
 
   try {
-    const response = await fetch('http://13.60.225.240:3003/api/faq/questions', {
+    const response = await fetch('http://localhost:3003/api/faq/questions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

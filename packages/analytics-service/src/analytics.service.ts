@@ -244,11 +244,11 @@ export class AnalyticsService {
       ]);
 
       return {
-        total_page_views: totalPageViews,
-        unique_visitors: uniqueVisitors,
-        unique_ips: uniqueIps,
-        registered_users: registeredUsers,
-        avg_duration: Math.round(avgDuration)
+        totalPageViews,
+        uniqueVisitors,
+        uniqueIps,
+        registeredUsers,
+        avgDuration: Math.round(avgDuration)
       };
     } catch (error) {
       this.logger.error('Failed to get traffic stats', error);

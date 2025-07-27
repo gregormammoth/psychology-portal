@@ -6,10 +6,10 @@ async function bootstrap() {
   
   const corsOrigins = process.env.CORS_ORIGINS 
     ? process.env.CORS_ORIGINS.split(',').map(origin => origin.trim())
-    : ['http://localhost:3000'];
+    : ['http://localhost:3000', 'http://localhost:3005'];
   
   app.enableCors({
-    origin: ['http://psychology-frontend-lb-2-1621481893.eu-north-1.elb.amazonaws.com'], // TODO: corsOrigins,
+    origin: corsOrigins, // ['http://psychology-frontend-lb-2-1621481893.eu-north-1.elb.amazonaws.com'], // TODO: corsOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],

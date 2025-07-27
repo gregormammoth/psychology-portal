@@ -1,6 +1,7 @@
 {
   "name": "admin",
   "version": "1.0.0",
+  "type": "module",
   "description": "Admin dashboard for Psychology Portal",
   "scripts": {
     "dev": "vite",

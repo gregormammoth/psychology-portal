@@ -10,7 +10,7 @@ import { AnalyticsService } from './analytics.service';
         name: 'ANALYTICS_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@rabbitmq:5672'],
+          urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@localhost:5672'],
           queue: 'psychology_analytics_queue',
           queueOptions: {
             durable: false,

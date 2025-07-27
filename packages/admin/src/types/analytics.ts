@@ -11,9 +11,14 @@ export interface PageViewData {
 }
 
 export interface AnalyticsStats {
-  totalViews: number
-  uniqueUsers: number
-  avgDuration: number
+  overview: {
+    totalPageViews: number
+    uniqueVisitors: number
+    uniqueIps: number
+    registeredUsers: number
+    avgDuration: number
+    bounceRate: number
+  }
   topPages: Array<{
     pageUrl: string
     pageTitle: string
@@ -22,7 +27,7 @@ export interface AnalyticsStats {
   dailyViews: Array<{
     date: string
     views: number
-    uniqueUsers: number
+    uniqueVisitors: number
   }>
   hourlyViews: Array<{
     hour: number

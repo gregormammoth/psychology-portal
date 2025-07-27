@@ -9,15 +9,20 @@ import TopPagesTable from '../components/TopPagesTable'
 
 export default function Dashboard() {
   const { dateRange, stats, isLoading, error } = useAnalyticsStore()
-  
+
   const { isLoading: statsLoading, error: statsError } = useAnalyticsStats(dateRange)
   const { data: dailyData, isLoading: dailyLoading } = useDailyStats(dateRange)
   const { data: hourlyData, isLoading: hourlyLoading } = useHourlyStats(dateRange)
 
   const mockStats = {
-    totalViews: 12543,
-    uniqueUsers: 3241,
-    avgDuration: 145,
+    overview: {
+      totalPageViews: 12543,
+      uniqueVisitors: 3241,
+      uniqueIps: 1234,
+      registeredUsers: 1234,
+      avgDuration: 145,
+      bounceRate: 24.3,
+    },
     topPages: [
       { pageUrl: '/', pageTitle: 'Home Page', views: 2341 },
       { pageUrl: '/articles', pageTitle: 'Articles', views: 1876 },
@@ -62,8 +67,10 @@ export default function Dashboard() {
     ],
   }
 
-  const currentStats = stats || mockStats
-  const loading = isLoading || statsLoading
+  const currentStats = stats || mockStats;
+  const loading = isLoading || statsLoading;
+
+  console.log('currentStats', currentStats);
 
   if (error || statsError) {
     return (
@@ -88,33 +95,49 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatisticsCard
           title="Total Page Views"
-          value={currentStats.totalViews.toLocaleString()}
+          value={currentStats?.overview?.totalPageViews?.toLocaleString()}
           icon={Eye}
-          trend={{ value: 12.5, isPositive: true }}
+          // trend={{ value: 12.5, isPositive: true }}
           description="vs last period"
           loading={loading}
         />
         <StatisticsCard
-          title="Unique Users"
-          value={currentStats.uniqueUsers.toLocaleString()}
+          title="Unique Visitors"
+          value={currentStats?.overview?.uniqueVisitors?.toLocaleString()}
           icon={Users}
-          trend={{ value: 8.2, isPositive: true }}
+          // trend={{ value: 8.2, isPositive: true }}
+          description="vs last period"
+          loading={loading}
+        />
+        <StatisticsCard
+          title="Unique IPs"
+          value={currentStats?.overview?.uniqueIps?.toLocaleString()}
+          icon={Users}
+          // trend={{ value: 8.2, isPositive: true }}
+          description="vs last period"
+          loading={loading}
+        />
+        <StatisticsCard
+          title="Registered Users"
+          value={currentStats?.overview?.registeredUsers?.toLocaleString()}
+          icon={Users}
+          // trend={{ value: 8.2, isPositive: true }}
           description="vs last period"
           loading={loading}
         />
         <StatisticsCard
           title="Avg. Session Duration"
-          value={`${Math.floor(currentStats.avgDuration / 60)}m ${currentStats.avgDuration % 60}s`}
+          value={`${Math.floor(currentStats?.overview?.avgDuration / 60)}m ${currentStats?.overview?.avgDuration % 60}s`}
           icon={Clock}
-          trend={{ value: 3.1, isPositive: false }}
+          // trend={{ value: 3.1, isPositive: false }}
           description="vs last period"
           loading={loading}
         />
         <StatisticsCard
           title="Bounce Rate"
-          value="24.3%"
-          icon={MousePointer}
-          trend={{ value: 5.4, isPositive: false }}
+          value={`${currentStats?.overview?.bounceRate}%`}
+          icon={Clock}
+          // trend={{ value: 3.1, isPositive: false }}
           description="vs last period"
           loading={loading}
         />

@@ -56,7 +56,7 @@ export default function ContactsPage() {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://13.60.225.240:3003/api/contacts', {
+      const response = await fetch('http://localhost:3003/api/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -12,7 +12,8 @@ import { UserSession, UserSessionSchema } from './schemas/user-session.schema';
       isGlobal: true,
     }),
     MongooseModule.forRoot(
-      'mongodb://admin:psypupel@13.61.155.215:27017/psychology_portal?authSource=admin' // TODO: process.env.MONGODB_URL || 'mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin'
+      'mongodb://admin:psypupel@localhost:27017/psychology_portal?authSource=admin'
+      // 'mongodb://admin:psypupel@13.61.155.215:27017/psychology_portal?authSource=admin' // TODO: process.env.MONGODB_URL || 'mongodb://admin:password@mongodb:27017/psychology_portal?authSource=admin'
     ),
     MongooseModule.forFeature([
       { name: PageView.name, schema: PageViewSchema },

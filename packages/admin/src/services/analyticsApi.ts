@@ -13,23 +13,23 @@ const apiClient = axios.create({
 
 export const analyticsApi = {
   getStats: async (dateRange: DateRange): Promise<AnalyticsStats> => {
-    return {
-      totalViews: 100,
-      uniqueUsers: 50,
-      avgDuration: 100,
-      topPages: [],
-      dailyViews: [],
-      hourlyViews: [],
-      languageStats: [],
-      deviceStats: [],
-    }
-    // const response = await apiClient.get('/api/analytics/stats', {
-    //   params: {
-    //     startDate: dateRange.startDate.toISOString(),
-    //     endDate: dateRange.endDate.toISOString(),
-    //   },
-    // })
-    // return response.data
+    // return {
+    //   totalViews: 100,
+    //   uniqueUsers: 50,
+    //   avgDuration: 100,
+    //   topPages: [],
+    //   dailyViews: [],
+    //   hourlyViews: [],
+    //   languageStats: [],
+    //   deviceStats: [],
+    // }
+    const response = await apiClient.get('/api/analytics/stats', {
+      params: {
+        startDate: dateRange.startDate.toISOString(),
+        endDate: dateRange.endDate.toISOString(),
+      },
+    })
+    return response.data
   },
 
   getPageViews: async (dateRange: DateRange): Promise<PageViewData[]> => {
