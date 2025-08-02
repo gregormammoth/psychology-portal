@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ChatGateway } from './chat/chat.gateway';
 import { ChatService } from './chat/chat.service';
@@ -7,7 +9,16 @@ import { Message, MessageSchema } from './schemas/message.schema';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://admin:psypupel@13.61.155.215:27017/psychology_portal?authSource=admin'), // TODO: process.env.MONGODB_URL || 'mongodb://admin:password@localhost:27017/psychology_portal?authSource=admin'),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get('MONGODB_URL'),
+      }),
+      inject: [ConfigService],
+    }),
     MongooseModule.forFeature([{ name: Message.name, schema: MessageSchema }]),
   ],
   controllers: [HealthController],
