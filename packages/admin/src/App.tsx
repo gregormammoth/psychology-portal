@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { BarChart3, Mail } from 'lucide-react'
+import { BarChart3, Mail, HelpCircle } from 'lucide-react'
 import Dashboard from './pages/Dashboard'
 import Contacts from './pages/Contacts'
+import Faq from './pages/Faq'
 
-type Page = 'dashboard' | 'contacts'
+type Page = 'dashboard' | 'contacts' | 'faq'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('dashboard')
@@ -11,6 +12,7 @@ function App() {
   const navigation = [
     { key: 'dashboard', name: 'Dashboard', icon: BarChart3 },
     { key: 'contacts', name: 'Contacts', icon: Mail },
+    { key: 'faq', name: 'FAQ', icon: HelpCircle },
   ]
 
   const renderPage = () => {
@@ -19,6 +21,8 @@ function App() {
         return <Dashboard />
       case 'contacts':
         return <Contacts />
+      case 'faq':
+        return <Faq />
       default:
         return <Dashboard />
     }
