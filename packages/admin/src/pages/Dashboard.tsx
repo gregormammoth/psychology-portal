@@ -1,4 +1,4 @@
-import { Eye, Users, Clock, MousePointer } from 'lucide-react'
+import { Eye, Users, Clock } from 'lucide-react'
 import { format } from 'date-fns'
 import { useAnalyticsStore } from '../store/useAnalyticsStore'
 import { useAnalyticsStats, useDailyStats, useHourlyStats } from '../hooks/useAnalytics'
@@ -69,8 +69,6 @@ export default function Dashboard() {
 
   const currentStats = stats || mockStats;
   const loading = isLoading || statsLoading;
-
-  console.log('currentStats', currentStats);
 
   if (error || statsError) {
     return (

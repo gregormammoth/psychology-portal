@@ -51,7 +51,7 @@ VITE_API_URL=http://localhost:3003
 npm run dev
 ```
 
-The admin dashboard will be available at `http://localhost:3005`
+The admin dashboard will be available at `http://localhost:3001`
 
 ## Available Scripts
 

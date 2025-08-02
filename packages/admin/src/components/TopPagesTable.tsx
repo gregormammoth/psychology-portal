@@ -32,7 +32,7 @@ export default function TopPagesTable({ data, loading = false }: TopPagesTablePr
       <div className="flow-root">
         <ul className="-my-2 divide-y divide-gray-200">
           {data.map((page, index) => (
-            <li key={page.pageUrl} className="py-3 flex items-center justify-between">
+            <li key={index} className="py-3 flex items-center justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-primary-100 text-primary-600 text-sm font-medium">
