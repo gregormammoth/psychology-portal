@@ -100,7 +100,7 @@ const ArticlesPage = () => {
         title={t('seo.pages.articles.title')}
         description={t('seo.pages.articles.description')}
         keywords={t('seo.pages.articles.keywords')}
-        url="https://psychologyportal.com/ru/articles"
+        url={`${process.env.NEXT_PUBLIC_URL}/ru/articles`}
         locale="ru"
       />
       <Layout

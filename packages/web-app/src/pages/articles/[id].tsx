@@ -369,7 +369,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
         title={`${article.title} - Екатерина Иванова`}
         description={article.description}
         keywords={`${article.title}, Екатерина Иванова, клинический психолог, КПТ, ${t(`articles.categories.${article.category}`)}`}
-        url={`https://psychologyportal.com/ru/articles/${article.id}`}
+        url={`${process.env.NEXT_PUBLIC_URL}/ru/articles/${article.id}`}
         locale="ru"
         structuredDataType="article"
         structuredData={article}

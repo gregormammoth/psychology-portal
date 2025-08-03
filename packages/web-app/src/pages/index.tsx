@@ -22,7 +22,7 @@ export default function Index() {
         title={t('seo.pages.home.title')}
         description={t('seo.pages.home.description')}
         keywords={t('seo.pages.home.keywords')}
-        url="https://psychologyportal.com/ru"
+        url={`${process.env.NEXT_PUBLIC_URL}/ru`}
         locale="ru"
         structuredDataType="person"
       />

@@ -24,7 +24,7 @@ const articles = [
 ];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const baseUrl = 'https://psychologyportal.com';
+  const baseUrl = process.env.NEXT_PUBLIC_URL;
   const currentDate = new Date().toISOString().split('T')[0];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

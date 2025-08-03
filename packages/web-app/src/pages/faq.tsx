@@ -128,7 +128,7 @@ export default function FAQ() {
         title={`${t('faq.title')} - Екатерина Иванова`}
         description={t('faq.description')}
         keywords="FAQ, часто задаваемые вопросы, психология, терапия, консультации, Екатерина Иванова"
-        url="https://psychologyportal.com/ru/faq"
+        url={`${process.env.NEXT_PUBLIC_URL}/faq`}
         locale="ru"
         structuredDataType="faq"
         structuredData={faqData}

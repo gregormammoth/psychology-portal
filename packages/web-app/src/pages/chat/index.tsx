@@ -22,7 +22,7 @@ export default function ChatPage() {
         title={t('seo.pages.chat.title')}
         description={t('seo.pages.chat.description')}
         keywords={t('seo.pages.chat.keywords')}
-        url="https://psychologyportal.com/ru/chat"
+        url={`${process.env.NEXT_PUBLIC_URL}/ru/chat`}
         locale="ru"
       />
       <Layout

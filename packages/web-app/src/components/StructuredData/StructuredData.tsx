@@ -12,8 +12,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Екатерина Иванова - Клинический психолог',
-    url: 'https://psychologyportal.com',
-    logo: 'https://psychologyportal.com/logo.png',
+    url: process.env.NEXT_PUBLIC_URL,
+    logo: `${process.env.NEXT_PUBLIC_URL}/logo.png`,
     description: t('seo.defaultDescription'),
     address: {
       '@type': 'PostalAddress',
@@ -34,9 +34,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     '@type': 'MedicalBusiness',
     name: 'Екатерина Иванова - Клинический психолог',
     description: t('seo.defaultDescription'),
-    url: 'https://psychologyportal.com',
-    telephone: '+7-xxx-xxx-xxxx',
-    email: 'contact@psychologyportal.com',
+    url: process.env.NEXT_PUBLIC_URL,
+    telephone: process.env.NEXT_PUBLIC_PHONE,
+    email: process.env.NEXT_PUBLIC_EMAIL,
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'RU'
@@ -86,8 +86,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     name: 'Екатерина Иванова',
     jobTitle: 'Клинический психолог',
     description: 'Клинический психолог с 10-летним опытом работы. Специализация: когнитивно-поведенческая терапия (КПТ).',
-    url: 'https://psychologyportal.com',
-    image: 'https://psychologyportal.com/images/ekaterina-ivanova.jpg',
+    url: process.env.NEXT_PUBLIC_URL,
+    image: `${process.env.NEXT_PUBLIC_URL}/images/ekaterina-ivanova.jpg`,
     sameAs: [
       'https://t.me/Katerina_Iva_nova'
     ],
@@ -130,7 +130,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     '@type': 'Article',
     headline: articleData?.title || 'Статья по психологии',
     description: articleData?.description || t('seo.pages.articles.description'),
-    image: articleData?.image || 'https://psychologyportal.com/images/article-default.jpg',
+    image: articleData?.image || `${process.env.NEXT_PUBLIC_URL}/images/article-default.jpg`,
     author: {
       '@type': 'Person',
       name: 'Екатерина Иванова',
@@ -141,14 +141,14 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       name: 'Екатерина Иванова - Клинический психолог',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://psychologyportal.com/logo.png'
+        url: `${process.env.NEXT_PUBLIC_URL}/logo.png`
       }
     },
     datePublished: articleData?.datePublished || new Date().toISOString(),
     dateModified: articleData?.dateModified || new Date().toISOString(),
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': articleData?.url || 'https://psychologyportal.com/ru/articles'
+      '@id': articleData?.url || `${process.env.NEXT_PUBLIC_URL}/articles`
     },
     articleSection: 'Клиническая психология',
     keywords: articleData?.keywords || t('seo.pages.articles.keywords')

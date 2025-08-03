@@ -103,7 +103,7 @@ export default function ContactsPage() {
         title={t('seo.pages.contacts.title')}
         description={t('seo.pages.contacts.description')}
         keywords={t('seo.pages.contacts.keywords')}
-        url="https://psychologyportal.com/ru/contacts"
+        url={`${process.env.NEXT_PUBLIC_URL}/contacts`}
         locale="ru"
       />
       <Layout
@@ -260,7 +260,7 @@ export default function ContactsPage() {
                       {t('contacts.contactInfo.phone.label')}
                     </h3>
                     <p className="mt-1 text-base text-primary-700">
-                      {t('contacts.contactInfo.phone.value')}
+                      {process.env.NEXT_PUBLIC_PHONE}
                     </p>
                   </div>
                 </div>
@@ -270,7 +270,7 @@ export default function ContactsPage() {
                       {t('contacts.contactInfo.email.label')}
                     </h3>
                     <p className="mt-1 text-base text-primary-700">
-                      {t('contacts.contactInfo.email.value')}
+                      {process.env.NEXT_PUBLIC_EMAIL}
                     </p>
                   </div>
                   <div>
