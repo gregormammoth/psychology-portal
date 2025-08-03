@@ -149,7 +149,7 @@ export default function FAQ() {
               </p>
             </div>
 
-            <div className='space-y-4 mb-16'>
+            <div className='space-y-4 mb-8'>
               {faqData.map((faq, index) => (
                 <details key={index} className='bg-white rounded-lg shadow-md overflow-hidden'>
                   <summary className='cursor-pointer px-6 py-4 bg-primary-600 hover:bg-primary-700 text-white font-medium transition-colors duration-200'>

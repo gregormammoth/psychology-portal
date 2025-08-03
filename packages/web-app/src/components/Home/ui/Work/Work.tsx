@@ -76,10 +76,10 @@ export default function Work() {
   }, [scrollDirection]);
 
   return (
-    <div className="py-20">
+    <div className="py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent sm:text-5xl animate-fade-in">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent sm:text-5xl animate-fade-in">
             {t('home.work.title')}
           </h2>
           <div className="mt-4 h-1 w-24 bg-gradient-to-r from-primary-500 to-primary-700 mx-auto rounded-full"></div>
@@ -100,13 +100,13 @@ export default function Work() {
             >
               <div className="flex items-start space-x-6">
                 <div className="flex-shrink-0 w-20 h-20 bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
-                  <span className="text-5xl group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
+                  <span className="text-3xl sm:text-5xl group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-primary-600 transition-colors duration-300">
+                  <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-4 group-hover:text-primary-600 transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">
+                  <p className="text-gray-600 leading-relaxed text-base sm:text-lg">
                     {item.description}
                   </p>
                 </div>

@@ -104,10 +104,10 @@ export default function ProblemSolving() {
   };
 
   return (
-    <div className="py-20 relative overflow-hidden">
+    <div className="py-8 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-transparent to-blue-50 opacity-30"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className={`text-4xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent sm:text-5xl transition-all duration-1000 ${chaosMode ? 'animate-bounce' : 'animate-fade-in'}`}>
             {t('home.problems.title')}
           </h2>

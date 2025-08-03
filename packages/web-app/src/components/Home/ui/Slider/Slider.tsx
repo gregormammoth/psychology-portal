@@ -12,9 +12,9 @@ export default function Slider() {
   const { t } = useTranslation('common');
   const router = useRouter();
   return (
-    <div className="py-16 overflow-hidden">
+    <div className="py-8 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-4xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent sm:text-5xl">
             {t('home.articles.title')}
           </h2>
