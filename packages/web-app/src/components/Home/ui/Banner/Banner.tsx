@@ -12,7 +12,7 @@ export default function Banner() {
       bgImage={isMobile ? '/images/banner_mobile.jpg' : '/images/banner.jpg'}
       bgImageAlt="Psychology background"
       strength={200}
-      blur={{ min: -5, max: 5 }}
+      // blur={{ min: -5, max: 5 }}
       bgImageStyle={{
         objectFit: 'cover',
         objectPosition: 'center',
