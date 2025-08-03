@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { Chat, Footer, Menu } from './ui';
+import { /* Chat, */ Footer, Menu } from './ui';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -26,7 +26,7 @@ export const Layout: React.FC<LayoutProps> = ({
       <main className="bg-primary-50 pt-16">{children}</main>
 
       <Footer />
-      <Chat />
+      {/* <Chat /> */}
     </div>
   );
 }; 

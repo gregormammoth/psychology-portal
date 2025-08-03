@@ -133,7 +133,7 @@ export default function Dashboard() {
         />
         <StatisticsCard
           title="Bounce Rate"
-          value={`${currentStats?.overview?.bounceRate}%`}
+          value={`${currentStats?.overview?.bounceRate || 0}%`}
           icon={Clock}
           // trend={{ value: 3.1, isPositive: false }}
           description="vs last period"

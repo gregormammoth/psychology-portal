@@ -1,29 +1,34 @@
+import { useMediaQuery } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { Parallax } from 'react-parallax';
 
 export default function Banner() {
   const { t } = useTranslation('common');
 
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   return (
     <Parallax
-      bgImage="/images/banner.jpg"
+      bgImage={isMobile ? '/images/banner_mobile.jpg' : '/images/banner.jpg'}
       bgImageAlt="Psychology background"
       strength={200}
-      blur={{ min: -10, max: 10 }}
+      blur={{ min: -5, max: 5 }}
       bgImageStyle={{
         objectFit: 'cover',
         objectPosition: 'center',
       }}
     >
       <div className="relative bg-black/60 min-h-screen">
-        <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-24 sm:px-6 lg:py-40 lg:px-8">
-          <div className="text-left max-w-2xl animate-fade-in">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:py-12 sm:px-6 lg:py-24 lg:px-8 flex items-end min-h-screen">
+          <div className="text-left max-w-2xl animate-fade-in flex flex-col justify-between">
             <h1 className="text-4xl font-extrabold text-white drop-shadow-lg sm:text-5xl sm:tracking-tight lg:text-6xl animate-slide-up">
               {t('home.banner.title')}
             </h1>
-            <p className="mt-6 text-xl text-white drop-shadow-md animate-slide-up-delay">
-              {t('home.banner.description')}
-            </p>
+            {!isMobile && (
+              <p className="mt-6 text-xl text-white drop-shadow-md animate-slide-up-delay">
+                {t('home.banner.description')}
+              </p>
+            )}
             <div className="mt-10 space-y-4 animate-fade-in-delay">
               <a
                 href="/contacts"

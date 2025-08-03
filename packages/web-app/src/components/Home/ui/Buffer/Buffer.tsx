@@ -6,7 +6,7 @@ export default function Buffer() {
       bgImage="/images/relationships.jpg"
       bgImageAlt="Psychology background"
       strength={200}
-      blur={{ min: -20, max: 20 }}
+      blur={{ min: -5, max: 5 }}
       bgImageStyle={{
         objectFit: 'cover',
         objectPosition: 'center',
