@@ -11,7 +11,22 @@ interface BookingFormData {
   preferredTime: string;
   consultationType: string;
   message: string;
+  problems: string[];
 }
+
+const PSYCHOLOGY_PROBLEMS = [
+  'depression',
+  'anxiety',
+  'relationship',
+  'self-esteem',
+  'stress',
+  'burnout',
+  'panic-attacks',
+  'phobias',
+  'grief',
+  'trauma',
+  'other'
+];
 
 export const Contacts = () => {
   const { t } = useTranslation('common');
@@ -30,6 +45,7 @@ export const Contacts = () => {
     preferredTime: '',
     consultationType: '',
     message: '',
+    problems: [],
   });
 
   const preferredContactTypes = [
@@ -82,6 +98,7 @@ export const Contacts = () => {
           preferredTime: '',
           consultationType: '',
           message: '',
+          problems: [],
         });
       } else {
         throw new Error('Failed to submit form');
@@ -101,137 +118,172 @@ export const Contacts = () => {
     const { name, value } = event.target;
     setFormData(prev => ({ ...prev, [name]: value as string }));
   };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    setFormData(prev => {
+      if (checked) {
+        return { ...prev, problems: [...prev.problems, value] };
+      } else {
+        return { ...prev, problems: prev.problems.filter(p => p !== value) };
+      }
+    });
+  };
+
   return (
     <>
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-primary-600 mb-4">
+      <div className='container mx-auto px-4 py-12'>
+        <div className='max-w-3xl mx-auto'>
+          <div className='text-center mb-12'>
+            <h1 className='text-4xl font-bold text-primary-600 mb-4'>
               {t('contacts.title')}
             </h1>
-            <p className="text-lg text-primary-500">
+            <p className='text-lg text-primary-500'>
               {t('contacts.subtitle')}
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-primary-100">
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className='bg-white rounded-xl shadow-lg p-8 border border-primary-100'>
+            <form onSubmit={handleSubmit} className='space-y-8'>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-primary-700 mb-2">
+                  <label htmlFor='name' className='block text-sm font-medium text-primary-700 mb-2'>
                     {t('contacts.form.name.label')}
                   </label>
                   <Input
-                    id="name"
-                    name="name"
-                    type="text"
+                    id='name'
+                    name='name'
+                    type='text'
                     required
                     value={formData.name}
                     onChange={handleChange}
                     placeholder={t('contacts.form.name.placeholder')}
-                    className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
+                    className='border-primary-200 focus:border-primary-500 focus:ring-primary-500'
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-2">
+                  <label htmlFor='email' className='block text-sm font-medium text-primary-700 mb-2'>
                     {t('contacts.form.email.label')}
                   </label>
                   <Select
-                    id="preferredContactType"
-                    name="preferredContactType"
+                    id='preferredContactType'
+                    name='preferredContactType'
                     required
                     value={formData.preferredContactType}
                     onChange={handleSelectChange}
                     options={preferredContactTypes}
-                    className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
+                    className='border-primary-200 focus:border-primary-500 focus:ring-primary-500'
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="contact" className="block text-sm font-medium text-primary-700 mb-2">
+                  <label htmlFor='contact' className='block text-sm font-medium text-primary-700 mb-2'>
                     {t('contacts.form.contact.label')}
                   </label>
                   <Input
-                    id="contact"
-                    name="contact"
-                    type="tel"
+                    id='contact'
+                    name='contact'
+                    type='tel'
                     required
                     value={formData.contact}
                     onChange={handleChange}
                     placeholder={t('contacts.form.contact.placeholder')}
-                    className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
+                    className='border-primary-200 focus:border-primary-500 focus:ring-primary-500'
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="consultationType" className="block text-sm font-medium text-primary-700 mb-2">
+                  <label htmlFor='consultationType' className='block text-sm font-medium text-primary-700 mb-2'>
                     {t('contacts.form.consultationType.label')}
                   </label>
                   <Select
-                    id="consultationType"
-                    name="consultationType"
+                    id='consultationType'
+                    name='consultationType'
                     required
                     value={formData.consultationType}
                     onChange={handleSelectChange}
                     options={consultationTypes}
-                    className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
+                    className='border-primary-200 focus:border-primary-500 focus:ring-primary-500'
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="preferredDate" className="block text-sm font-medium text-primary-700 mb-2">
+                  <label htmlFor='preferredDate' className='block text-sm font-medium text-primary-700 mb-2'>
                     {t('contacts.form.preferredDate.label')}
                   </label>
                   <Input
-                    id="preferredDate"
-                    name="preferredDate"
-                    type="date"
+                    id='preferredDate'
+                    name='preferredDate'
+                    type='date'
                     required
                     value={formData.preferredDate}
                     onChange={handleChange}
                     inputProps={{ min: getTomorrowDate() }}
-                    className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
+                    className='border-primary-200 focus:border-primary-500 focus:ring-primary-500'
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="preferredTime" className="block text-sm font-medium text-primary-700 mb-2">
+                  <label htmlFor='preferredTime' className='block text-sm font-medium text-primary-700 mb-2'>
                     {t('contacts.form.preferredTime.label')}
                   </label>
                   <Select
-                    id="preferredTime"
-                    name="preferredTime"
+                    id='preferredTime'
+                    name='preferredTime'
                     required
                     value={formData.preferredTime}
                     onChange={handleSelectChange}
                     options={timeSlots}
-                    className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
+                    className='border-primary-200 focus:border-primary-500 focus:ring-primary-500'
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-primary-700 mb-2">
+                <label className='block text-sm font-medium text-primary-700 mb-2'>
+                  {t('contacts.form.problems.label', 'What are your main concerns?')}
+                </label>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
+                  {PSYCHOLOGY_PROBLEMS.map(problem => (
+                    <label key={problem} className='flex items-center space-x-2 text-primary-700'>
+                      <input
+                        type='checkbox'
+                        name='problems'
+                        value={problem}
+                        checked={formData.problems.includes(problem)}
+                        onChange={handleCheckboxChange}
+                        className='accent-primary-600'
+                      />
+                      <span>
+                        {t(`contacts.form.problems.options.${problem}`, problem.charAt(0).toUpperCase() + problem.slice(1).replace('-', ' '))}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor='message' className='block text-sm font-medium text-primary-700 mb-2'>
                   {t('contacts.form.message.label')}
                 </label>
                 <Textarea
-                  id="message"
-                  name="message"
+                  id='message'
+                  name='message'
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t('contacts.form.message.placeholder')}
                   rows={4}
-                  className="border-primary-200 focus:border-primary-500 focus:ring-primary-500"
+                  className='border-primary-200 focus:border-primary-500 focus:ring-primary-500'
                 />
               </div>
 
-              <div className="flex justify-end">
+              <div className='flex justify-end'>
                 <Button
-                  type="submit"
-                  variant="contained"
-                  size="lg"
-                  className="mt-6 w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  type='submit'
+                  variant='contained'
+                  size='lg'
+                  className='mt-6 w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl'
                 >
                   {t('contacts.form.submit')}
                 </Button>
@@ -239,43 +291,43 @@ export const Contacts = () => {
             </form>
           </div>
 
-          <div className="mt-16 bg-white rounded-xl shadow-lg p-8 border border-primary-100">
-            <h2 className="text-2xl font-semibold text-primary-600 mb-6">
+          <div className='mt-16 bg-white rounded-xl shadow-lg p-8 border border-primary-100'>
+            <h2 className='text-2xl font-semibold text-primary-600 mb-6'>
               {t('contacts.contactInfo.title')}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+              <div className='space-y-4'>
                 <div>
-                  <h3 className="text-sm font-medium text-primary-500">
+                  <h3 className='text-sm font-medium text-primary-500'>
                     {t('contacts.contactInfo.address.label')}
                   </h3>
-                  <p className="mt-1 text-base text-primary-700">
+                  <p className='mt-1 text-base text-primary-700'>
                     {t('contacts.contactInfo.address.value')}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-primary-500">
+                  <h3 className='text-sm font-medium text-primary-500'>
                     {t('contacts.contactInfo.phone.label')}
                   </h3>
-                  <p className="mt-1 text-base text-primary-700">
+                  <p className='mt-1 text-base text-primary-700'>
                     {process.env.NEXT_PUBLIC_PHONE}
                   </p>
                 </div>
               </div>
-              <div className="space-y-4">
+              <div className='space-y-4'>
                 <div>
-                  <h3 className="text-sm font-medium text-primary-500">
+                  <h3 className='text-sm font-medium text-primary-500'>
                     {t('contacts.contactInfo.email.label')}
                   </h3>
-                  <p className="mt-1 text-base text-primary-700">
+                  <p className='mt-1 text-base text-primary-700'>
                     {process.env.NEXT_PUBLIC_EMAIL}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-primary-500">
+                  <h3 className='text-sm font-medium text-primary-500'>
                     {t('contacts.contactInfo.workingHours.label')}
                   </h3>
-                  <p className="mt-1 text-base text-primary-700">
+                  <p className='mt-1 text-base text-primary-700'>
                     {t('contacts.contactInfo.workingHours.value')}
                   </p>
                 </div>

@@ -14,14 +14,17 @@ export class Contact {
   @Prop({ required: true })
   preferredContactType: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   preferredDate: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   preferredTime: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false, default: 'individual' })
   consultationType: string;
+
+  @Prop({ required: false, default: [] })
+  problems: string[];
 
   @Prop()
   message: string;

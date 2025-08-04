@@ -204,6 +204,22 @@
       "preferredTime": {
         "label": "Preferred Time"
       },
+      "problems": {
+        "label": "What are your main concerns?",
+        "options": {
+          "depression": "Depression",
+          "anxiety": "Anxiety",
+          "relationship": "Relationship Issues",
+          "self-esteem": "Self-Esteem",
+          "stress": "Stress",
+          "burnout": "Burnout",
+          "panic-attacks": "Panic Attacks",
+          "phobias": "Phobias",
+          "grief": "Grief",
+          "trauma": "Trauma",
+          "other": "Other"
+        }
+      },
       "message": {
         "label": "Additional Information",
         "placeholder": "Please provide any additional information that might be helpful for your consultation..."

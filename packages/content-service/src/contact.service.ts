@@ -10,6 +10,7 @@ export interface ContactFormData {
   preferredDate: string;
   preferredTime: string;
   consultationType: string;
+  problems: string[];
   message?: string;
 }
 
