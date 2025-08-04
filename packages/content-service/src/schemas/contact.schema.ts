@@ -9,10 +9,10 @@ export class Contact {
   name: string;
 
   @Prop({ required: true })
-  email: string;
+  contact: string;
 
   @Prop({ required: true })
-  phone: string;
+  preferredContactType: string;
 
   @Prop({ required: true })
   preferredDate: string;

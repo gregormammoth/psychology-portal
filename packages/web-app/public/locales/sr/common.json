@@ -124,7 +124,7 @@
     "subtitle": "Закажите сесију са нашим искусним психолозима",
     "form": {
       "name": {
-        "label": "Пуно име",
+        "label": "Име",
         "placeholder": "Петар Петровић"
       },
       "email": {
@@ -135,13 +135,24 @@
         "label": "Број телефона",
         "placeholder": "+381 60 000-0000"
       },
+      "preferredContactType": {
+        "label": "Предпочитани тип контакта",
+        "options": {
+          "email": "Email",
+          "phone": "Телефон",
+          "telegram": "Telegram",
+          "whatsapp": "WhatsApp"
+        }
+      },
+      "contact": {
+        "label": "Контакт",
+        "placeholder": "petar@example.com"
+      },
       "consultationType": {
         "label": "Тип консултације",
         "options": {
-          "individual": "Индивидуална консултација",
-          "couple": "Парска терапија",
-          "family": "Породична терапија",
-          "group": "Групна терапија"
+          "individual": "Индивидуална консултација (60 мин)",
+          "preliminary": "Предварителна консултација (15-20 мин)"
         }
       },
       "preferredDate": {

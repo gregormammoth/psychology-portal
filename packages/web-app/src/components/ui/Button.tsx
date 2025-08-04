@@ -5,8 +5,9 @@ import { styled } from '@mui/material/styles';
 // Map our custom variants to MUI variants
 const variantMapping = {
   primary: 'contained',
-  secondary: 'contained',
+  secondary: 'outlined',
   outline: 'outlined',
+  contained: 'contained',
 };
 
 // Map our custom sizes to MUI sizes
@@ -26,7 +27,7 @@ const SecondaryButton = styled(MuiButton)(({ theme }) => ({
 }));
 
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'contained';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   children: React.ReactNode;
@@ -60,6 +61,16 @@ export const Button: React.FC<ButtonProps> = ({
       size={sizeMapping[size] as 'small' | 'medium' | 'large'}
       color={variant === 'primary' ? 'primary' : 'inherit'}
       className={className}
+      sx={{
+        backgroundColor: 'primary.main',
+        color: 'white',
+        py: 1.5,
+        '&:hover': {
+          backgroundColor: 'primary.dark',
+          transform: 'translateY(-2px)',
+          boxShadow: 3,
+        },
+      }}
       {...props}
     >
       {children}

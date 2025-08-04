@@ -5,8 +5,8 @@ import { Contact, ContactDocument } from './schemas/contact.schema';
 
 export interface ContactFormData {
   name: string;
-  email: string;
-  phone: string;
+  contact: string;
+  preferredContactType: string;
   preferredDate: string;
   preferredTime: string;
   consultationType: string;

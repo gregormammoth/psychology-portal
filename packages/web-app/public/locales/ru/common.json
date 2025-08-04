@@ -150,7 +150,7 @@
     "subtitle": "Индивидуальные онлайн-консультации по когнитивно-поведенческой терапии",
     "form": {
       "name": {
-        "label": "Полное имя",
+        "label": "Имя",
         "placeholder": "Иван Иванов"
       },
       "email": {
@@ -161,13 +161,24 @@
         "label": "Номер телефона",
         "placeholder": "+7 (999) 000-0000"
       },
+      "preferredContactType": {
+        "label": "Предпочтительный тип контакта",
+        "options": {
+          "email": "Email",
+          "phone": "Телефон",
+          "telegram": "Telegram",
+          "whatsapp": "WhatsApp"
+        }
+      },
+      "contact": {
+        "label": "Контакт (Email/Phone/Telegram/WhatsApp)",
+        "placeholder": "ivan@example.com"
+      },
       "consultationType": {
         "label": "Тип консультации",
         "options": {
           "individual": "Индивидуальная консультация (60 мин)",
-          "preliminary": "Предварительная встреча (15-20 мин)",
-          "couple": "Семейная терапия",
-          "group": "Групповая терапия"
+          "preliminary": "Предварительная встреча (15-20 мин)"
         }
       },
       "preferredDate": {

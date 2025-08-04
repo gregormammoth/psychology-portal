@@ -167,7 +167,7 @@
     "subtitle": "Schedule a session with our experienced psychologists",
     "form": {
       "name": {
-        "label": "Full Name",
+        "label": "Name",
         "placeholder": "John Doe"
       },
       "email": {
@@ -178,13 +178,24 @@
         "label": "Phone Number",
         "placeholder": "+1 (555) 000-0000"
       },
+      "preferredContactType": {
+        "label": "Preferred Contact Type",
+        "options": {
+          "email": "Email",
+          "phone": "Phone",
+          "telegram": "Telegram",
+          "whatsapp": "WhatsApp"
+        }
+      },
+      "contact": {
+        "label": "Contact (Email/Phone/Telegram/WhatsApp)",
+        "placeholder": "john@example.com"
+      },
       "consultationType": {
         "label": "Consultation Type",
         "options": {
-          "individual": "Individual Consultation",
-          "couple": "Couple Therapy",
-          "family": "Family Therapy",
-          "group": "Group Therapy"
+          "individual": "Individual Consultation (60 min)",
+          "preliminary": "Preliminary Consultation (15-20 min)"
         }
       },
       "preferredDate": {
