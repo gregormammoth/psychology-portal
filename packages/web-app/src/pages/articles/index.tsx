@@ -7,7 +7,7 @@ import {
   Container,
   Grid,
   Typography,
-  TextField,
+  // TextField,
   Box,
   Card,
   CardContent,
@@ -16,14 +16,14 @@ import {
   Chip,
   Stack,
   Pagination,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  // FormControl,
+  // InputLabel,
+  // Select,
+  // MenuItem,
   ThemeProvider,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Search as SearchIcon, FilterList as FilterListIcon } from '@mui/icons-material';
+// import { Search as SearchIcon, FilterList as FilterListIcon } from '@mui/icons-material';
 import { Layout } from '../../components/Layout/Layout';
 import SEO from '../../components/SEO';
 import theme from '../../theme';
@@ -44,12 +44,12 @@ const StyledCardMedia = styled(CardMedia)({
   height: 200,
 });
 
-const FilterSection = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  marginBottom: theme.spacing(3),
-}));
+// const FilterSection = styled(Box)(({ theme }) => ({
+//   padding: theme.spacing(2),
+//   backgroundColor: theme.palette.background.paper,
+//   borderRadius: theme.shape.borderRadius,
+//   marginBottom: theme.spacing(3),
+// }));
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
@@ -136,7 +136,7 @@ const ArticlesPage = () => {
               {t('articles.description')}
             </Typography>
 
-            <FilterSection sx={{
+            {/* <FilterSection sx={{
               boxShadow: 3,
               borderRadius: 2,
               p: 3,
@@ -228,7 +228,7 @@ const ArticlesPage = () => {
                   </Button>
                 </Grid>
               </Grid>
-            </FilterSection>
+            </FilterSection> */}
 
             <Grid container spacing={4}>
               {mockArticles.map((article) => (
@@ -329,7 +329,7 @@ const ArticlesPage = () => {
               ))}
             </Grid>
 
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+            {/* <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
               <Pagination
                 count={5}
                 page={page}
@@ -338,7 +338,7 @@ const ArticlesPage = () => {
                 showFirstButton
                 showLastButton
               />
-            </Box>
+            </Box> */}
           </Container>
         </ThemeProvider>
       </Layout>

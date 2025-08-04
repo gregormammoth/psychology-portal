@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h3 className="text-xl font-semibold mb-4">Phone and Email</h3>
+            <h3 className="text-xl font-semibold mb-4">{t('footer.phoneAndEmail')}</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <EmailIcon />
@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h3 className="text-xl font-semibold mb-4">Telegram</h3>
+            <h3 className="text-xl font-semibold mb-4">{t('footer.telegram')}</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <TelegramIcon />
@@ -38,7 +38,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <GroupIcon />
-                <a href={`tel:${process.env.NEXT_PUBLIC_TELEGRAM_GROUP_URL}`} className="hover:text-primary-200 transition-colors">
+                <a href={process.env.NEXT_PUBLIC_TELEGRAM_GROUP_URL} className="hover:text-primary-200 transition-colors">
                   {t('home.banner.telegramGroup')}
                 </a>
               </div>

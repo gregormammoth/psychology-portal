@@ -151,7 +151,7 @@ export const Chat: React.FC = () => {
       <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="grid grid-cols-4 h-[80vh]">
           <div className="col-span-1 bg-primary-50 p-4 border-r border-primary-200">
-            <h3 className="font-display text-lg font-semibold text-primary-700 mb-4">{t('chat.onlineUsers')}</h3>
+            {/* <h3 className="font-display text-lg font-semibold text-primary-700 mb-4">{t('chat.onlineUsers')}</h3> */}
             <div className="space-y-2">
               {users.map(user => (
                 <div key={user.userId} className="flex items-center space-x-2">
@@ -208,7 +208,7 @@ export const Chat: React.FC = () => {
             </div>
 
             <form onSubmit={handleSendMessage} className="p-4 border-t border-primary-200">
-              <div className="flex space-x-4">
+              <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}

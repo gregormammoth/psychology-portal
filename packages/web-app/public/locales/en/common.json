@@ -69,7 +69,7 @@
         },
         "depression": {
           "title": "Depression",
-          "description": "Addressing persistent sadness, low mood, and lack of motivation with personalized treatment plans."
+          "description": "Addressing persistent sadness, low mood, and lack of motivation with personalized therapy plans."
         },
         "relationships": {
           "title": "Relationship Issues",
@@ -158,20 +158,8 @@
     "send": "Send"
   },
   "footer": {
-    "about": {
-      "title": "About Us",
-      "description": "Providing professional psychological support and guidance to help you navigate life's challenges."
-    },
-    "quickLinks": {
-      "title": "Quick Links"
-    },
-    "contact": {
-      "title": "Contact",
-      "address": "123 Psychology Street, Suite 456, City, State 12345",
-      "email": "contact@psychologyportal.com",
-      "phone": "+1 (555) 123-4567",
-      "workingHours": "Monday - Friday, 9:00 AM - 6:00 PM"
-    },
+    "phoneAndEmail": "Phone and Email",
+    "telegram": "Telegram",
     "copyright": "© {{year}} Psychology Portal. All rights reserved."
   },
   "contacts": {
@@ -298,7 +286,7 @@
       },
       "medication": {
         "question": "Do you prescribe medication?",
-        "answer": "As a psychologist, I do not prescribe medication. However, I work closely with psychiatrists and other medical professionals when medication might be beneficial as part of your treatment plan. I can provide referrals and coordinate care as needed."
+        "answer": "As a psychologist, I do not prescribe medication. However, I work closely with psychiatrists and other medical professionals when medication might be beneficial as part of your treatment plan."
       },
       "family": {
         "question": "Can family members or friends join my therapy sessions?",

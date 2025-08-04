@@ -52,10 +52,10 @@ export default function FAQ() {
       question: t('faq.questions.online.question'),
       answer: t('faq.questions.online.answer')
     },
-    {
-      question: t('faq.questions.emergency.question'),
-      answer: t('faq.questions.emergency.answer')
-    },
+    // {
+    //   question: t('faq.questions.emergency.question'),
+    //   answer: t('faq.questions.emergency.answer')
+    // },
     {
       question: t('faq.questions.medication.question'),
       answer: t('faq.questions.medication.answer')
